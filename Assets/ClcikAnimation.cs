@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickHandler : MonoBehaviour
+public class ClickAnimation : MonoBehaviour
 {
-    public List<Animation> currentInDisplay;
 
+    public List<Animation> currentInDisplay;
 
     public void ClickAnimate() => currentInDisplay.ForEach((Animation a) => a.Play());
 
-
 }
-
