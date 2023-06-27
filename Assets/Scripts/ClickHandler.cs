@@ -42,6 +42,20 @@ public class ClickHandler : MonoBehaviour
 
     public float CalculateClickValue()
     {
+        /*
+         CalculateClickValue sera realizado:
+            -Apos todas as configuracoes serem feitas pos Awake
+            -Ao comprar novos generators
+            -Ao comprar novo upgrade
+            -Ao receber um bonus
+
+        No mais ele ficara incalculado ate que essas coisas disparem e um evento inscrito chamara o calculo
+
+        Talvez seja necessario guardar valor base atual do total para retornar dos bonus temporarios
+        Talvez bonus tenham que ser tratados separadamente de CalculateClickValue (ou nao, so depende do approach)
+         */
+
+
         //essa linha sera comentada e so esta aqui para ter um valor calculado qualquer para testar apenas
         currentClick = Mathf.Floor(currentPps * staticModifier * levelManager.currentLevel / 1.07f);
 
