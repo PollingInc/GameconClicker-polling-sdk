@@ -10,10 +10,10 @@ using TMPro;
 
 public class ClickManager : MonoBehaviour
 {
-    public int totalAmount;
+    public float totalAmount;
     public TMP_Text amountDisplay;
         
-    public int AddAmount(int amount)
+    public float AddAmount(float amount)
     {
         totalAmount += amount;
         return totalAmount;
@@ -28,7 +28,7 @@ public class ClickManager : MonoBehaviour
         }
 
 
-        amountDisplay.text = totalAmount.ToString();
+        amountDisplay.text = totalAmount.ToString("F0");
     }
 
 

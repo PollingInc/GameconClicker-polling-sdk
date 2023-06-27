@@ -7,7 +7,7 @@ public class ClickHandler : MonoBehaviour
 {
     
     public float currentPps;
-    private int currentClick;
+    private float currentClick;
 
     public float staticModifier = 1.07f;
 
@@ -39,9 +39,9 @@ public class ClickHandler : MonoBehaviour
     }
 
 
-    public int CalculateClickValue()
+    public float CalculateClickValue()
     {
-        currentClick = (int)Mathf.Floor(currentPps * staticModifier * levelManager.currentLevel / 1.07f);
+        currentClick = Mathf.Floor(currentPps * staticModifier * levelManager.currentLevel / 1.07f);
         return currentClick;
     }
 
