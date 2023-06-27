@@ -20,11 +20,15 @@ public class ClickHandler : MonoBehaviour
     [HideInInspector]
     public ClickAnimation clickAnim;
 
+    [HideInInspector]
+    public LevelManager levelManager;
+
     
     private void Awake()
     {
         clickManager = this.GetComponent<ClickManager>();
         clickAnim = this.GetComponent<ClickAnimation>();
+        levelManager = this.GetComponent<LevelManager>();
     }
 
 
@@ -37,7 +41,7 @@ public class ClickHandler : MonoBehaviour
 
     public int CalculateClickValue()
     {
-        currentClick = (int)Mathf.Floor(currentPps/1.7f);
+        currentClick = (int)Mathf.Floor(currentPps * staticModifier * levelManager.currentLevel / 1.07f);
         return currentClick;
     }
 
