@@ -9,7 +9,7 @@ public class ClickHandler : MonoBehaviour
     public float currentPps;
     private float currentClick;
 
-    public float staticModifier = 1.07f;
+    public float staticModifier = 1.07f; //1.07f
 
 
     //COMPONENTS
