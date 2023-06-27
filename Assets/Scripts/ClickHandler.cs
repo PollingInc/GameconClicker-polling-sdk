@@ -56,8 +56,13 @@ public class ClickHandler : MonoBehaviour
          */
 
 
+
+
         //essa linha sera comentada e so esta aqui para ter um valor calculado qualquer para testar apenas
         currentClick = Mathf.Floor(currentPps * staticModifier * levelManager.currentLevel / 1.07f);
+
+
+
 
         //sera global
         List<KeyValuePair<GeneratorSO, int>> inventory = new List<KeyValuePair<GeneratorSO,int>>();
