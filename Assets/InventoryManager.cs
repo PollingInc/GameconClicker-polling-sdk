@@ -12,20 +12,23 @@ public class InventoryManager : MonoBehaviour
     {
         generatorInventory = new Dictionary<GeneratorSO, InventoryInfo>();
     }
-
-
+    
     public void AddGenerator(GeneratorSO generator)
     {
         if(generatorInventory.ContainsKey(generator))
         {
             generatorInventory[generator].quantity += 1;
+            //generatorInventory[generator].currentPps = //ALGUMA CONTA PARA CALCULAR NOVO COST;
+            //generatorInventory[generator].currentPps = //ALGUMA CONTA PARA CALCULAR NOVO PPS;
         }
         else
         {
             generatorInventory.Add(
                 generator, 
                 new InventoryInfo() { 
-                    quantity = 1 
+                    quantity = 1,
+                    currentCost = generator.baseCost,   //TALVEZ CALCULAR NOVO COST aqui tbm, pois assim o 2o gerador ja tera custo diferente.
+                    currentPps = generator.basePps
                 }
             );
         }
