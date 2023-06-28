@@ -48,6 +48,7 @@ public class InventoryManager : MonoBehaviour
         if (generatorInventory.ContainsKey(generator))
         {
             generatorInventory[generator].currentUpgrade = upgrade;
+            //generatorInventory[generator].currentPps = //ALGUMA CONTA PARA CALCULAR NOVO PPS, POREEEM BASEADA NO UPGRADE;
         }
         else
         {
@@ -59,7 +60,8 @@ public class InventoryManager : MonoBehaviour
                 new InventoryInfo()
                 {
                     quantity = 1,
-                    currentUpgrade = upgrade
+                    currentUpgrade = upgrade,
+                    //currentPps = //ALGUMA CONTA PARA CALCULAR NOVO PPS, POREEEM BASEADA NO UPGRADE
                 }
             );
         }
