@@ -27,13 +27,30 @@ public class InventoryManager : MonoBehaviour
                 new InventoryInfo() { 
                     quantity = 1 
                 }
-                );
+            );
         }
     }
 
-    public void AddGeneratorUpgrade()
+    public void AddGeneratorUpgrade(GeneratorSO generator, UpgradeSO upgrade)
     {
-
+        if (generatorInventory.ContainsKey(generator))
+        {
+            generatorInventory[generator].currentUpgrade = upgrade;
+        }
+        else
+        {
+            //REVER TRECHO
+            //TALVEZ EXIBIR ERRO DE QUE NAO EH POSSIVEL COMPRAR UM UPGRADE DE UM GENERATOR QUE VOCE NAO POSSUI
+            //Assim pode se evitar problemas de cheats e glitches
+            generatorInventory.Add(
+                generator,
+                new InventoryInfo()
+                {
+                    quantity = 1,
+                    currentUpgrade = upgrade
+                }
+            );
+        }
     }
 
 
