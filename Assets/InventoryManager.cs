@@ -21,13 +21,14 @@ public class InventoryManager : MonoBehaviour
     {
         generatorInventory = new Dictionary<GeneratorSO, InventoryInfo>();
     }
-    
+
+    #region ADD
     public void AddGenerator(GeneratorSO generator)
     {
         if(generatorInventory.ContainsKey(generator))
         {
             generatorInventory[generator].quantity += 1;
-            //generatorInventory[generator].currentPps = //ALGUMA CONTA PARA CALCULAR NOVO COST;
+            //generatorInventory[generator].currentCost = //ALGUMA CONTA PARA CALCULAR NOVO COST;
             //generatorInventory[generator].currentPps = //ALGUMA CONTA PARA CALCULAR NOVO PPS;
         }
         else
@@ -66,6 +67,24 @@ public class InventoryManager : MonoBehaviour
             );
         }
     }
+
+    #endregion ADD
+
+    #region CALCULATE
+    public void CalculateGenerator(InventoryInfo currentValues, GeneratorSO generator)
+    {
+        //PPS FORMULA
+        var newPps = generator.basePps * currentValues.quantity;
+
+        //COST FORMULA
+        var newCost = generator.baseCost * (Mathf.Pow(1.07f, currentValues.quantity));
+
+
+        currentValues.currentPps = newPps;
+        currentValues.currentCost = newCost;
+
+    }
+    #endregion CALCULATE
 
 
 

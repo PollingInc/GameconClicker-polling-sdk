@@ -75,7 +75,7 @@ public class ClickHandler : MonoBehaviour
 
         foreach (var generator in inventory)
         {
-            _totalPps += generator.Key.currentPps * generator.Value;
+            //_totalPps += generator.Key.currentPps * generator.Value;
         }
 
         totalPps = _totalPps;
