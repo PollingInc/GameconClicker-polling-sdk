@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class InventoryInfo
+{
+    public int quantity;
+    public float currentCost;
+    public float currentPps;
+    public UpgradeSO currentUpgrade;
+}
+
+
 public class InventoryManager : MonoBehaviour
 {
     public Dictionary<GeneratorSO, InventoryInfo> generatorInventory;
@@ -59,10 +68,4 @@ public class InventoryManager : MonoBehaviour
 
 
 }
-public class InventoryInfo
-{
-    public int quantity;
-    public float currentCost;
-    public float currentPps;
-    public UpgradeSO currentUpgrade;
-}
+
