@@ -43,18 +43,6 @@ public class ClickHandler : MonoBehaviour
 
     public float CalculateClickValue()
     {
-        //float _totalPps = 0; //DESCOMENTAR QUANDO COMENTARIO DE BAIXO JA ESTIVER SATISFEITO
-        float _totalPps = 1; //APENAS PARA EFEITO DE TESTE, O VALOR AQUI TEM QUE SER ZERO. Por hora como nao tem um valor base de click inicial isto ocorre.
-        
-        foreach(var generator in inventoryManager.generatorInventory)
-        {
-            _totalPps += generator.Value.currentPps;
-        }
-
-        return _totalPps;
-
-
-
         /*
          CalculateClickValue sera realizado:
             -Apos todas as configuracoes serem feitas pos Awake
@@ -68,35 +56,17 @@ public class ClickHandler : MonoBehaviour
         Talvez bonus tenham que ser tratados separadamente de CalculateClickValue (ou nao, so depende do approach)
          */
 
-
-
-        /*
-        //essa linha sera comentada e so esta aqui para ter um valor calculado qualquer para testar apenas
-        currentClick = Mathf.Floor(currentPps * staticModifier * levelManager.currentLevel / 1.07f);
-
-        //sera global
-        List<KeyValuePair<GeneratorSO, int>> inventory = new List<KeyValuePair<GeneratorSO,int>>();
-
-        //sera global
-        float totalPps = 0;
-
-        //mantera local
-        float _totalPps = 0;
-
-        foreach (var generator in inventory)
+        //float _totalPps = 0; //DESCOMENTAR QUANDO COMENTARIO DE BAIXO JA ESTIVER SATISFEITO
+        float _totalPps = 1; //APENAS PARA EFEITO DE TESTE, O VALOR AQUI TEM QUE SER ZERO. Por hora como nao tem um valor base de click inicial isto ocorre.
+        
+        foreach(var generator in inventoryManager.generatorInventory)
         {
-            //_totalPps += generator.Key.currentPps * generator.Value;
+            _totalPps += generator.Value.currentPps;
         }
 
-        totalPps = _totalPps;
-
-        return currentClick;
-        */
+        return _totalPps;
     }
 
-
-
-    //public void ClickAnimate() => clickAnim.ClickAnimate();
 
 
 }
