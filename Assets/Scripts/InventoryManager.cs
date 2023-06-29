@@ -13,12 +13,22 @@ public class InventoryInfo
 
 public class InventoryManager : MonoBehaviour
 {
+    public static InventoryManager Instance { get; private set; }
+
     public Dictionary<GeneratorSO, InventoryInfo> generatorInventory;
     public InventoryInfo generatorInventoryInfo;
 
-
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+        
         generatorInventory = new Dictionary<GeneratorSO, InventoryInfo>();
     }
 
@@ -27,9 +37,13 @@ public class InventoryManager : MonoBehaviour
     {
         if(generatorInventory.ContainsKey(generator))
         {
-            generatorInventory[generator].quantity += 1;
-            //generatorInventory[generator].currentCost = //ALGUMA CONTA PARA CALCULAR NOVO COST;
-            //generatorInventory[generator].currentPps = //ALGUMA CONTA PARA CALCULAR NOVO PPS;
+            var selectedGenerator = generatorInventory[generator];
+            selectedGenerator.quantity += 1;
+
+            var newValues = CalculateGenerator(selectedGenerator, generator);
+
+            selectedGenerator.currentCost = newValues.currentCost; //_____________ALGUMA CONTA PARA CALCULAR NOVO COST;
+            generatorInventory[generator].currentPps = newValues.currentPps; //_____________ALGUMA CONTA PARA CALCULAR NOVO PPS;
         }
         else
         {
@@ -71,7 +85,7 @@ public class InventoryManager : MonoBehaviour
     #endregion ADD
 
     #region CALCULATE
-    public void CalculateGenerator(InventoryInfo currentValues, GeneratorSO generator)
+    public InventoryInfo CalculateGenerator(InventoryInfo currentValues, GeneratorSO generator)
     {
         //PPS FORMULA
         var newPps = generator.basePps * currentValues.quantity;
@@ -82,6 +96,8 @@ public class InventoryManager : MonoBehaviour
 
         currentValues.currentPps = newPps;
         currentValues.currentCost = newCost;
+
+        return currentValues;
 
     }
     #endregion CALCULATE

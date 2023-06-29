@@ -9,8 +9,8 @@ public class ClickHandler : MonoBehaviour
     public float currentPps;
     private float currentClick;
 
-    public float staticModifier = 1.07f; //1.07f
-
+    public float staticModifier = 1f; //1.07f
+    private InventoryManager inventoryManager;
 
 
     //COMPONENTS
@@ -30,18 +30,31 @@ public class ClickHandler : MonoBehaviour
         clickManager = this.GetComponent<ClickManager>();
         clickAnim = this.GetComponent<ClickAnimation>();
         levelManager = this.GetComponent<LevelManager>();
+        inventoryManager = this.GetComponent<InventoryManager>();
     }
 
-
+    //USANDO NO ClickArea do CANVAS em OnClick 
     public void ClickRoutine()
     {
-        clickManager.AddAmount(CalculateClickValue());
+        clickManager.AddAmount(CalculateClickValue()); //necessario revisao para questao de performance, conforme mencionei nos comentarios do CalculateClickValue
         clickAnim.ClickAnimate();
     }
 
 
     public float CalculateClickValue()
     {
+        //float _totalPps = 0; //DESCOMENTAR QUANDO COMENTARIO DE BAIXO JA ESTIVER SATISFEITO
+        float _totalPps = 1; //APENAS PARA EFEITO DE TESTE, O VALOR AQUI TEM QUE SER ZERO. Por hora como nao tem um valor base de click inicial isto ocorre.
+        
+        foreach(var generator in inventoryManager.generatorInventory)
+        {
+            _totalPps += generator.Value.currentPps;
+        }
+
+        return _totalPps;
+
+
+
         /*
          CalculateClickValue sera realizado:
             -Apos todas as configuracoes serem feitas pos Awake
@@ -57,12 +70,9 @@ public class ClickHandler : MonoBehaviour
 
 
 
-
+        /*
         //essa linha sera comentada e so esta aqui para ter um valor calculado qualquer para testar apenas
         currentClick = Mathf.Floor(currentPps * staticModifier * levelManager.currentLevel / 1.07f);
-
-
-
 
         //sera global
         List<KeyValuePair<GeneratorSO, int>> inventory = new List<KeyValuePair<GeneratorSO,int>>();
@@ -80,8 +90,8 @@ public class ClickHandler : MonoBehaviour
 
         totalPps = _totalPps;
 
-
         return currentClick;
+        */
     }
 
 

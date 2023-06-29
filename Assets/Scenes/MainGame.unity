@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17576951, g: 0.21995047, b: 0.30227968, a: 1}
+  m_IndirectSpecularColor: {r: 0.17576821, g: 0.21994819, b: 0.30227783, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2394,6 +2394,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5599409516247581049, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: generatorConfigs
+      value: 
+      objectReference: {fileID: 11400000, guid: 17e09bfbd642c82428e17d3c4218cc47,
+        type: 2}
     - target: {fileID: 5773453990691351537, guid: a4fac520f47cc0441ac8c6cc0fdea055,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2438,6 +2444,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Generator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537817285664731418, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537817285664731418, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537817285664731418, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1539004279}
+    - target: {fileID: 6537817285664731418, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537817285664731418, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Add
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537817285664731418, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Generator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537817285664731418, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7192449305234915214, guid: a4fac520f47cc0441ac8c6cc0fdea055,
         type: 3}
@@ -2490,6 +2531,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1539004277}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1539004279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5599409516247581049, guid: a4fac520f47cc0441ac8c6cc0fdea055,
+    type: 3}
+  m_PrefabInstance: {fileID: 1539004277}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e7c42ec1626ed4caef26415a5dcaa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1590134238
 GameObject:
   m_ObjectHideFlags: 0
