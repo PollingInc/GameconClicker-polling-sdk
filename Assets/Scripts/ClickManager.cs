@@ -10,9 +10,24 @@ using TMPro;
 
 public class ClickManager : MonoBehaviour
 {
+    public static ClickManager Instance { get; private set; }
+
     public float totalAmount;
     public TMP_Text amountDisplay;
-        
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
+
     public float AddAmount(float amount)
     {
         totalAmount += amount;

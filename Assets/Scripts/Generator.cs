@@ -9,10 +9,11 @@ public class Generator : MonoBehaviour
     public void Add()
     {
         var inventoryManager = InventoryManager.Instance;
+        var clickManager = ClickManager.Instance;
         
-        if(inventoryManager == null)
+        if(inventoryManager == null || clickManager == null)
         {
-            Debug.LogWarning("Inventario nao encontrado");
+            Debug.LogWarning($"{inventoryManager.name ?? clickManager.name} nao encontrado");
             return;
         }
 

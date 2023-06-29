@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d780f64252df394393412683e1c172a, type: 3}
   m_Name: Generator - Free Keys
   m_EditorClassIdentifier: 
-  baseCost: 200
+  baseCost: 10
   basePps: 2

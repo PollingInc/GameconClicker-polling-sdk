@@ -18,6 +18,8 @@ public class InventoryManager : MonoBehaviour
     public Dictionary<GeneratorSO, InventoryInfo> generatorInventory;
     public InventoryInfo generatorInventoryInfo;
 
+    public ClickManager clickManager;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -30,23 +32,35 @@ public class InventoryManager : MonoBehaviour
         }
         
         generatorInventory = new Dictionary<GeneratorSO, InventoryInfo>();
+        clickManager = this.GetComponent<ClickManager>();
     }
 
     #region ADD
     public void AddGenerator(GeneratorSO generator)
     {
-        if(generatorInventory.ContainsKey(generator))
+        
+
+        if (generatorInventory.ContainsKey(generator))
         {
             var selectedGenerator = generatorInventory[generator];
+
+            clickManager.totalAmount -= selectedGenerator.currentCost;
+            
             selectedGenerator.quantity += 1;
 
             var newValues = CalculateGenerator(selectedGenerator, generator);
 
-            selectedGenerator.currentCost = newValues.currentCost; //_____________ALGUMA CONTA PARA CALCULAR NOVO COST;
+            generatorInventory[generator].currentCost = newValues.currentCost; //_____________ALGUMA CONTA PARA CALCULAR NOVO COST;
             generatorInventory[generator].currentPps = newValues.currentPps; //_____________ALGUMA CONTA PARA CALCULAR NOVO PPS;
+
+
+            Debug.Log($"Preço de {generator.name} | { (int)generatorInventory[generator].currentCost }");
         }
         else
         {
+            clickManager.totalAmount -= generator.baseCost;
+            //Debug.Log($"Preço inicial de {generator.name} | { generator.baseCost }");  //NAO FAZ SENTIDO, ESSE EH O PRECO ANTERIOR
+
             generatorInventory.Add(
                 generator, 
                 new InventoryInfo() { 
