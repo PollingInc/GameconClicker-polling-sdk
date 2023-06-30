@@ -14,6 +14,8 @@ public class ClickManager : MonoBehaviour
 
     public float totalAmount;
     public TMP_Text amountDisplay;
+    public TMP_Text ppsDisplay;
+
     public LevelManager levelManager;
 
     private void Awake()

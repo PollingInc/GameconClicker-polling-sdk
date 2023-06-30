@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
 
     public int currentPriority;
 
+    public LevelProgressUI levelProgressBar;
+
     //TEMPORARIO PARA MOSTRAR MOCKUP NO EVENTO
     public List<LevelData> allLevels;
     //public List<GameObject> allLevels;
@@ -20,6 +22,11 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         currentLevel = allLevels[0];
+    }
+
+    private void Update()
+    {
+        levelProgressBar.image.fillAmount = Mathf.Lerp(0,1, currentLevel.currentCumulative/currentLevel.cumulativeGoal);
     }
 
 
