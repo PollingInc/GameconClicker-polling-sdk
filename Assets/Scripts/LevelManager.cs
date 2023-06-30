@@ -29,7 +29,18 @@ public class LevelManager : MonoBehaviour
 
     public void UnlockNextLevel()
     {
-        
+        var currentLevelIndex = allLevels.IndexOf(currentLevel);
+
+        var nextLevel = allLevels[currentLevelIndex + 1];
+
+        var fromCamera = allLevels[currentLevelIndex].virtualCamera;
+        var toCamera = nextLevel.virtualCamera;
+
+        currentLevel.isConcluded = true;
+
+        SwitchCameraByPriority(fromCamera, toCamera);
+
+
     }
 
 

@@ -37,7 +37,7 @@ public class ClickManager : MonoBehaviour
     {
         totalAmount += amount;
 
-        if (levelManager.currentLevel.isConcluded) {
+        if (!levelManager.currentLevel.isConcluded) {
             var currentLevel = levelManager.currentLevel;
             currentLevel.currentCumulative += amount;
 
