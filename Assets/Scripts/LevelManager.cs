@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour
     public LevelData currentLevel;
     //public int currentLevelNumber = 1;
 
+    private void Start()
+    {
+        currentLevel = allLevels[0];
+    }
+
 
     void SwitchCameraByPriority(CinemachineVirtualCamera fromCamera, CinemachineVirtualCamera toCamera)
     {

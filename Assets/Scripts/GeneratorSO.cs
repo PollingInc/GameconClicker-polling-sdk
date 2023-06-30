@@ -8,6 +8,8 @@ public class GeneratorSO : ScriptableObject
     public float baseCost;
     public float basePps;
 
+    public bool autoGenerator;
+
     //public float currentCost;
     //public float currentPps;
 }

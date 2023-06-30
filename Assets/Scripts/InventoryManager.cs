@@ -19,6 +19,7 @@ public class InventoryManager : MonoBehaviour
     public InventoryInfo generatorInventoryInfo;
 
     public ClickManager clickManager;
+    public ClickHandler clickHandler;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class InventoryManager : MonoBehaviour
         
         generatorInventory = new Dictionary<GeneratorSO, InventoryInfo>();
         clickManager = this.GetComponent<ClickManager>();
+        clickHandler = this.GetComponent<ClickHandler>();
     }
 
     #region ADD
@@ -70,6 +72,10 @@ public class InventoryManager : MonoBehaviour
                 }
             );
         }
+
+        clickHandler.RecalculateAllValues();
+
+
     }
 
     public void AddGeneratorUpgrade(GeneratorSO generator, UpgradeSO upgrade)
