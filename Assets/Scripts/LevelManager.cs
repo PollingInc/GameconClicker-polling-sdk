@@ -67,21 +67,44 @@ public class LevelManager : MonoBehaviour
 
         var nextLevel = allLevels[currentLevelIndex + 1];
 
-        var fromCamera = allLevels[currentLevelIndex].virtualCamera;
-        var toCamera = nextLevel.virtualCamera;
+        //var fromCamera = allLevels[currentLevelIndex].virtualCamera;
+        //var toCamera = nextLevel.virtualCamera;
 
-        SwitchCameraByPriority(fromCamera, toCamera);
+        //SwitchCameraByPriority(fromCamera, toCamera);
         SwitchLevel(nextLevel);
     }
 
 
     public void SwitchLevel(LevelData targetLevel)
     {
+        SwitchCameraByPriority(currentLevel.virtualCamera, targetLevel.virtualCamera);
+
         currentLevel = targetLevel;
         var levelAnimation = currentLevel.GetComponent<LevelAnimation>();
 
         clickAnimation.currentInDisplay = levelAnimation.levelOnClickAnimations;
+    }
 
+    public void UISwitchLevelHandler(bool next)
+    {
+        var currentLevelIndex = allLevels.IndexOf(currentLevel);
+        int targetLevelIndex = 0;
+
+        if (next)
+        {
+            if (currentLevelIndex >= allLevels.Count) return;
+
+            targetLevelIndex = currentLevelIndex + 1;
+        }
+
+        else
+        {
+            if (currentLevelIndex <= 0) return;
+
+            targetLevelIndex = currentLevelIndex -1;
+        }
+
+        SwitchLevel(allLevels[targetLevelIndex]);
     }
 
 
