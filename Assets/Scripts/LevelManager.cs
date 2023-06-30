@@ -5,5 +5,11 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public int currentLevel = 1;
-    public int currentGoal;
+    public float currentGoal;
+    public float goalProgress;
+
+
+
+
+
 }
