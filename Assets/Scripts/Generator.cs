@@ -6,11 +6,13 @@ using TMPro;
 public class Generator : MonoBehaviour
 {
     public GeneratorSO generatorConfigs;
+    public TMP_Text quantityField;
     public TMP_Text priceField;
 
     public void Awake()
     {
         priceField.text = generatorConfigs.baseCost.ToString("F0");
+        quantityField.text = 0.ToString("F0");
     }
 
     public void Add()
@@ -30,6 +32,11 @@ public class Generator : MonoBehaviour
     public void UpdatePrice(float newPrice)
     {
         priceField.text = newPrice.ToString("F0");
+    }
+
+    public void UpdateQuantity(int newQuantity)
+    {
+        quantityField.text = newQuantity.ToString("F0");
     }
 
 

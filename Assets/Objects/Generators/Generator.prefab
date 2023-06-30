@@ -1664,6 +1664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generatorConfigs: {fileID: 0}
+  quantityField: {fileID: 2834997763480336923}
   priceField: {fileID: 3551329603260937333}
 --- !u!1 &7555260588106085706
 GameObject:

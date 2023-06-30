@@ -40,13 +40,17 @@ public class InventoryManager : MonoBehaviour
     #region ADD
     public void AddGenerator(GeneratorSO generator, Generator generatorObject)
     {
+        //SERA UTIL PARA QUANDO TIVER COMPRA EM LOTE, PODE VIRAR UM PARAMETRO DA FUNCAO
+        //TIPO EM COMPRAS QUE QUEIRA FAZER COMPRANDO LOTE DE 1x, 10x, 100x
+        int quantity = 1;
+
         if (generatorInventory.ContainsKey(generator))
         {
             var selectedGenerator = generatorInventory[generator];
 
             clickManager.totalAmount -= selectedGenerator.currentCost;
             
-            selectedGenerator.quantity += 1;
+            selectedGenerator.quantity += quantity;
 
             var newValues = CalculateGenerator(selectedGenerator, generator);
 
@@ -61,7 +65,7 @@ public class InventoryManager : MonoBehaviour
             generatorInventory.Add(
                 generator, 
                 new InventoryInfo() { 
-                    quantity = 1,
+                    quantity = quantity,
                     currentCost = generator.baseCost,   //TALVEZ CALCULAR NOVO COST aqui tbm, pois assim o 2o gerador ja tera custo diferente.
                     currentPps = generator.basePps
                 }
@@ -69,9 +73,13 @@ public class InventoryManager : MonoBehaviour
         }
 
         var newPrice = generatorInventory[generator].currentCost;
-        Debug.Log($"Preço de {generator.name} | { generatorInventory[generator].currentCost.ToString("F0") }");
+        var newQuantity = generatorInventory[generator].quantity;
+        
+        //Debug.Log($"Preço de {generator.name} | { newPrice.ToString("F0") }");
+        Debug.Log($"Quantidade de {generator.name} | {newQuantity.ToString("F0")}");
 
         generatorObject.UpdatePrice(newPrice);
+        generatorObject.UpdateQuantity(newQuantity);
         clickHandler.RecalculateAllValues();
 
     }
