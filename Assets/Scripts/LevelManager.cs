@@ -36,16 +36,23 @@ public class LevelManager : MonoBehaviour
     {
         var currentLevelIndex = allLevels.IndexOf(currentLevel);
 
+        currentLevel.isConcluded = true;
+        
+        if (currentLevelIndex + 1 == allLevels.Count) return;
+
         var nextLevel = allLevels[currentLevelIndex + 1];
 
         var fromCamera = allLevels[currentLevelIndex].virtualCamera;
         var toCamera = nextLevel.virtualCamera;
 
-        currentLevel.isConcluded = true;
-
         SwitchCameraByPriority(fromCamera, toCamera);
+        SwitchLevel(nextLevel);
+    }
 
 
+    public void SwitchLevel(LevelData targetLevel)
+    {
+        currentLevel = targetLevel;
     }
 
 

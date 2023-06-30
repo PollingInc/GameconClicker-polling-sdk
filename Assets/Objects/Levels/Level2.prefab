@@ -566,7 +566,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 5461539593936798125}
-  cumulativeGoal: 0
+  isConcluded: 0
+  cumulativeGoal: 1000
+  currentCumulative: 0
 --- !u!1 &4160854200733389209
 GameObject:
   m_ObjectHideFlags: 0
