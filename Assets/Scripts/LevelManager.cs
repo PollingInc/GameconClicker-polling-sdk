@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
+        //NAO PRECISARA SER NO UPDATE, DEPOIS DO EVENTO MUDAR PARA ACONTECIMENTOS DE ACOES. ESTUDAR SE EVENTOS PODEM SER UMA BOA IDEIA
+        //(POIS CONECTAR TODAS AS ENTRADAS DE PONTOS EM UMA ACTION SO TALVEZ, SEM NECESSITAR FAZER A OPERACAO TODO O FRAME)
         levelProgressBar.image.fillAmount = Mathf.Lerp(0,1, currentLevel.currentCumulative/currentLevel.cumulativeGoal);
     }
 
