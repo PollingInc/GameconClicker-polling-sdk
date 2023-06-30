@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Generator : MonoBehaviour
 {
     public GeneratorSO generatorConfigs;
-    
+    public TMP_Text priceField;
+
     public void Add()
     {
         var inventoryManager = InventoryManager.Instance;
@@ -17,7 +19,13 @@ public class Generator : MonoBehaviour
             return;
         }
 
-        inventoryManager.AddGenerator(generatorConfigs);
+        inventoryManager.AddGenerator(generatorConfigs, this);
     }
+
+    public void UpdatePrice(float newPrice)
+    {
+        priceField.text = newPrice.ToString("F0");
+    }
+
 
 }

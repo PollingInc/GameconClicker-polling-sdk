@@ -18,7 +18,7 @@ public class InventoryManager : MonoBehaviour
     public Dictionary<GeneratorSO, InventoryInfo> generatorInventory;
     public InventoryInfo generatorInventoryInfo;
 
-    public ClickManager clickManager;
+    ClickManager clickManager;
 
     private void Awake()
     {
@@ -36,10 +36,8 @@ public class InventoryManager : MonoBehaviour
     }
 
     #region ADD
-    public void AddGenerator(GeneratorSO generator)
+    public void AddGenerator(GeneratorSO generator, Generator generatorObject)
     {
-        
-
         if (generatorInventory.ContainsKey(generator))
         {
             var selectedGenerator = generatorInventory[generator];
@@ -52,9 +50,6 @@ public class InventoryManager : MonoBehaviour
 
             generatorInventory[generator].currentCost = newValues.currentCost; //_____________ALGUMA CONTA PARA CALCULAR NOVO COST;
             generatorInventory[generator].currentPps = newValues.currentPps; //_____________ALGUMA CONTA PARA CALCULAR NOVO PPS;
-
-
-            Debug.Log($"Preço de {generator.name} | { (int)generatorInventory[generator].currentCost }");
         }
         else
         {
@@ -70,6 +65,12 @@ public class InventoryManager : MonoBehaviour
                 }
             );
         }
+
+        var newPrice = generatorInventory[generator].currentCost;
+        Debug.Log($"Preço de {generator.name} | { generatorInventory[generator].currentCost.ToString("F0") }");
+
+        generatorObject.UpdatePrice(newPrice);
+
     }
 
     public void AddGeneratorUpgrade(GeneratorSO generator, UpgradeSO upgrade)
