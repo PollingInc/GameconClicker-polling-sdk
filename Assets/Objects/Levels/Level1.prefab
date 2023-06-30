@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3400278326638110809}
   - component: {fileID: 5636321508993934478}
+  - component: {fileID: 7639992635778279286}
   m_Layer: 0
   m_Name: Level1
   m_TagString: Untagged
@@ -54,6 +55,21 @@ MonoBehaviour:
   isConcluded: 0
   cumulativeGoal: 200
   currentCumulative: 0
+--- !u!114 &7639992635778279286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926997065262521244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bbaf144387bf142a584f68567936c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelOnClickAnimations:
+  - {fileID: 8086364892629256341}
+  - {fileID: 9072446854404086815}
 --- !u!1 &1504462000176475254
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +927,12 @@ PrefabInstance:
 --- !u!4 &7595821904099351643 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aee75951f22bb2e4697b08e7a15638b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 7990369503299271600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &8086364892629256341 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 2223639932434330405, guid: aee75951f22bb2e4697b08e7a15638b0,
     type: 3}
   m_PrefabInstance: {fileID: 7990369503299271600}
   m_PrefabAsset: {fileID: 0}

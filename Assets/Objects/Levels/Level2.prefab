@@ -522,6 +522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7943312147143226170}
   - component: {fileID: 8877768457481473309}
+  - component: {fileID: 6701619713681030155}
   m_Layer: 0
   m_Name: Level2
   m_TagString: Untagged
@@ -569,6 +570,22 @@ MonoBehaviour:
   isConcluded: 0
   cumulativeGoal: 1000
   currentCumulative: 0
+--- !u!114 &6701619713681030155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4135841794961019576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8bbaf144387bf142a584f68567936c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelOnClickAnimations:
+  - {fileID: 152992560225853987}
+  - {fileID: 67816956967237405}
+  - {fileID: 6017903500483794069}
 --- !u!1 &4160854200733389209
 GameObject:
   m_ObjectHideFlags: 0

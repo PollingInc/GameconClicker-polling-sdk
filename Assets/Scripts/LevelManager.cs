@@ -21,9 +21,18 @@ public class LevelManager : MonoBehaviour
     public LevelData currentLevel;
     //public int currentLevelNumber = 1;
 
-    private void Start()
+
+    ClickAnimation clickAnimation;
+
+    void Awake()
+    {
+        clickAnimation = this.GetComponent<ClickAnimation>();
+    }
+
+    void Start()
     {
         currentLevel = allLevels[0];
+        clickAnimation.currentInDisplay = currentLevel.GetComponent<LevelAnimation>().levelOnClickAnimations;
     }
 
     private void Update()
@@ -32,10 +41,6 @@ public class LevelManager : MonoBehaviour
         //(POIS CONECTAR TODAS AS ENTRADAS DE PONTOS EM UMA ACTION SO TALVEZ, SEM NECESSITAR FAZER A OPERACAO TODO O FRAME)
         levelProgressBar.image.fillAmount = Mathf.Lerp(0,1, currentLevel.currentCumulative/currentLevel.cumulativeGoal);
         levelProgressText.text = $"{currentLevel.currentCumulative} / {currentLevel.cumulativeGoal}";
-
-
-        
-
     }
 
 
@@ -73,6 +78,10 @@ public class LevelManager : MonoBehaviour
     public void SwitchLevel(LevelData targetLevel)
     {
         currentLevel = targetLevel;
+        var levelAnimation = currentLevel.GetComponent<LevelAnimation>();
+
+        clickAnimation.currentInDisplay = levelAnimation.levelOnClickAnimations;
+
     }
 
 
