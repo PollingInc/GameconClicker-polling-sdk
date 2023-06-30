@@ -8,6 +8,11 @@ public class Generator : MonoBehaviour
     public GeneratorSO generatorConfigs;
     public TMP_Text priceField;
 
+    public void Awake()
+    {
+        priceField.text = generatorConfigs.baseCost.ToString("F0");
+    }
+
     public void Add()
     {
         var inventoryManager = InventoryManager.Instance;

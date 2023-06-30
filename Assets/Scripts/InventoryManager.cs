@@ -72,6 +72,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"Preço de {generator.name} | { generatorInventory[generator].currentCost.ToString("F0") }");
 
         generatorObject.UpdatePrice(newPrice);
+        clickHandler.RecalculateAllValues();
 
     }
 
