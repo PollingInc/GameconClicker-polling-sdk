@@ -14,6 +14,7 @@ public class ClickManager : MonoBehaviour
 
     public float totalAmount;
     public TMP_Text amountDisplay;
+    public LevelManager levelManager;
 
     private void Awake()
     {
@@ -25,12 +26,28 @@ public class ClickManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        //TEMPORARIO PARA EVENTO
+
+        levelManager = this.GetComponent<LevelManager>();
     }
 
 
     public float AddAmount(float amount)
     {
         totalAmount += amount;
+
+        if (levelManager.currentLevel.isConcluded) {
+            var currentLevel = levelManager.currentLevel;
+            currentLevel.currentCumulative += amount;
+
+            if (currentLevel.currentCumulative > currentLevel.cumulativeGoal) {
+                levelManager.UnlockNextLevel();
+            }
+        }
+        
+
+
         return totalAmount;
     }
 
