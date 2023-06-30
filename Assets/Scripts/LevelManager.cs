@@ -1,9 +1,69 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class LevelManager : MonoBehaviour
 {
-    public int currentLevel = 1;
-    public int currentGoal;
+    public float currentGoal;
+    public float goalProgress;
+
+    public int currentPriority;
+
+    public LevelProgressUI levelProgressBar;
+
+    //TEMPORARIO PARA MOSTRAR MOCKUP NO EVENTO
+    public List<LevelData> allLevels;
+    //public List<GameObject> allLevels;
+
+    public LevelData currentLevel;
+    //public int currentLevelNumber = 1;
+
+    private void Start()
+    {
+        currentLevel = allLevels[0];
+    }
+
+    private void Update()
+    {
+        //NAO PRECISARA SER NO UPDATE, DEPOIS DO EVENTO MUDAR PARA ACONTECIMENTOS DE ACOES. ESTUDAR SE EVENTOS PODEM SER UMA BOA IDEIA
+        //(POIS CONECTAR TODAS AS ENTRADAS DE PONTOS EM UMA ACTION SO TALVEZ, SEM NECESSITAR FAZER A OPERACAO TODO O FRAME)
+        levelProgressBar.image.fillAmount = Mathf.Lerp(0,1, currentLevel.currentCumulative/currentLevel.cumulativeGoal);
+    }
+
+
+    void SwitchCameraByPriority(CinemachineVirtualCamera fromCamera, CinemachineVirtualCamera toCamera)
+    {
+        currentPriority = fromCamera.Priority;
+        
+        toCamera.Priority = currentPriority;
+        fromCamera.Priority = 0;
+    }
+
+
+    public void UnlockNextLevel()
+    {
+        var currentLevelIndex = allLevels.IndexOf(currentLevel);
+
+        currentLevel.isConcluded = true;
+        
+        if (currentLevelIndex + 1 == allLevels.Count) return;
+
+        var nextLevel = allLevels[currentLevelIndex + 1];
+
+        var fromCamera = allLevels[currentLevelIndex].virtualCamera;
+        var toCamera = nextLevel.virtualCamera;
+
+        SwitchCameraByPriority(fromCamera, toCamera);
+        SwitchLevel(nextLevel);
+    }
+
+
+    public void SwitchLevel(LevelData targetLevel)
+    {
+        currentLevel = targetLevel;
+    }
+
+
+
 }
