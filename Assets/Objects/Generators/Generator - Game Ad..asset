@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCost: 140
   basePps: 5
-  staticModifier: 1
+  costStaticModifier: 1
+  ppsStaticModifier: 1.4
   autoGenerator: 1

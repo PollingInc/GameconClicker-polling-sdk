@@ -146,12 +146,12 @@ public class InventoryManager : MonoBehaviour
     public InventoryInfo CalculateGenerator(InventoryInfo currentValues, GeneratorSO generator)
     {
         //PPS FORMULA
-        var newPps = generator.basePps * currentValues.quantity;
+        var newPps = generator.basePps * currentValues.quantity * generator.ppsStaticModifier;
 
         //COST FORMULA
         //var newCost = generator.baseCost * (Mathf.Pow(1.07f, currentValues.quantity));
         //var newCost = generator.baseCost * (Mathf.Pow(1.07f, currentValues.quantity * generator.staticModifier));
-        var newCost = generator.baseCost * (Mathf.Pow(1.07f * generator.staticModifier, currentValues.quantity));
+        var newCost = generator.baseCost * (Mathf.Pow(1.07f * generator.costStaticModifier, currentValues.quantity));
 
 
         currentValues.currentPps = newPps;

@@ -7,7 +7,8 @@ public class GeneratorSO : ScriptableObject
 {
     public float baseCost;
     public float basePps;
-    public float staticModifier = 1;
+    public float costStaticModifier = 1;
+    public float ppsStaticModifier = 1;
 
     public bool autoGenerator;
 
