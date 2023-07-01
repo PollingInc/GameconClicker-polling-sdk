@@ -39,6 +39,10 @@ public class ClickHandler : MonoBehaviour
         //clickManager.AddAmount(CalculateClickValue()); //necessario revisao para questao de performance, conforme mencionei nos comentarios do CalculateClickValue
         clickManager.AddAmount(currentClick);
         clickAnim.ClickAnimate();
+
+        //PROVISORIO PARA EVENTO
+        //inventoryManager.
+
     }
 
 

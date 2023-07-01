@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class Generator : MonoBehaviour
@@ -8,6 +9,10 @@ public class Generator : MonoBehaviour
     public GeneratorSO generatorConfigs;
     public TMP_Text quantityField;
     public TMP_Text priceField;
+
+    public bool playerHasEnoughCredits;
+    Button buyButton;
+
 
     public void Awake()
     {
@@ -28,6 +33,37 @@ public class Generator : MonoBehaviour
 
         inventoryManager.AddGenerator(generatorConfigs, this);
     }
+
+    //PROVISORIO PARA A ENTREGA DO EVENTO
+    private void Update()
+    {
+        //EM ALGUM LUGAR, TALVEZ EXTERNO, TEM QUE ENTRAR A LOGICA QUE MUDA O buyButton
+
+
+        if (playerHasEnoughCredits)
+        {
+            if (!buyButton.interactable)
+            {
+                EnableBuyButton();
+            }
+        }
+        else 
+        {
+            DisableBuyButton();
+        }
+    }
+
+
+    public void EnableBuyButton()
+    {
+        buyButton.interactable = true;
+    }
+
+    public void DisableBuyButton()
+    {
+        buyButton.interactable = false;
+    }
+
 
     public void UpdatePrice(float newPrice)
     {

@@ -37,6 +37,20 @@ public class InventoryManager : MonoBehaviour
         clickHandler = this.GetComponent<ClickHandler>();
     }
 
+    public void PricesFlush() 
+    { 
+        foreach(var generator in generatorInventory)
+        {
+            if(generator.Value.currentCost > clickManager.totalAmount)
+            {
+                //generator.Key.
+            }
+        }
+
+    }
+
+
+
     #region ADD
     public void AddGenerator(GeneratorSO generator, Generator generatorObject)
     {
