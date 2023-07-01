@@ -41,8 +41,7 @@ public class ClickHandler : MonoBehaviour
         clickAnim.ClickAnimate();
 
         //PROVISORIO PARA EVENTO
-        //inventoryManager.
-
+        //inventoryManager.PricesFlush();
     }
 
 
@@ -53,7 +52,7 @@ public class ClickHandler : MonoBehaviour
 
         foreach (var generator in inventoryManager.generatorInventory) 
         {
-            if (!generator.Key.autoGenerator)
+            if (!generator.Key.generatorConfigs.autoGenerator)
             {
                 _totalClick += generator.Value.currentPps;
             }

@@ -1666,6 +1666,8 @@ MonoBehaviour:
   generatorConfigs: {fileID: 0}
   quantityField: {fileID: 2834997763480336923}
   priceField: {fileID: 3551329603260937333}
+  playerHasEnoughCredits: 0
+  _firstBuy: 1
 --- !u!1 &7555260588106085706
 GameObject:
   m_ObjectHideFlags: 0

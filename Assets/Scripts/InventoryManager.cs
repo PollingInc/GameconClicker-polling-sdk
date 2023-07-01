@@ -15,11 +15,11 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    public Dictionary<GeneratorSO, InventoryInfo> generatorInventory;
+    public Dictionary<Generator, InventoryInfo> generatorInventory;
     public InventoryInfo generatorInventoryInfo;
 
-    public ClickManager clickManager;
-    public ClickHandler clickHandler;
+    ClickManager clickManager;
+    ClickHandler clickHandler;
 
     private void Awake()
     {
@@ -32,35 +32,53 @@ public class InventoryManager : MonoBehaviour
             Instance = this;
         }
         
-        generatorInventory = new Dictionary<GeneratorSO, InventoryInfo>();
+        generatorInventory = new Dictionary<Generator, InventoryInfo>();
         clickManager = this.GetComponent<ClickManager>();
         clickHandler = this.GetComponent<ClickHandler>();
     }
 
+    //PROVISORIO
+    private void Update()
+    {
+        PricesFlush();
+    }
+
+
     public void PricesFlush() 
     { 
-        foreach(var generator in generatorInventory)
+        foreach(var generatorObject in generatorInventory)
         {
-            if(generator.Value.currentCost > clickManager.totalAmount)
+            if(generatorObject.Value.currentCost > clickManager.totalAmount)
             {
-                //generator.Key.
+                generatorObject.Key.playerHasEnoughCredits = false;
             }
+
+            else
+            {
+                generatorObject.Key.playerHasEnoughCredits = true;
+            }
+
         }
 
     }
 
-
-
     #region ADD
-    public void AddGenerator(GeneratorSO generator, Generator generatorObject)
+    public void AddGenerator(Generator generatorObject)
     {
+        
+        //provisorio
+        if (generatorObject._firstBuy) generatorObject._firstBuy = false;
+
+
+        var generator = generatorObject.generatorConfigs;
+
         //SERA UTIL PARA QUANDO TIVER COMPRA EM LOTE, PODE VIRAR UM PARAMETRO DA FUNCAO
         //TIPO EM COMPRAS QUE QUEIRA FAZER COMPRANDO LOTE DE 1x, 10x, 100x
         int quantity = 1;
 
-        if (generatorInventory.ContainsKey(generator))
+        if (generatorInventory.ContainsKey(generatorObject))
         {
-            var selectedGenerator = generatorInventory[generator];
+            var selectedGenerator = generatorInventory[generatorObject];
 
             clickManager.totalAmount -= selectedGenerator.currentCost;
             
@@ -68,8 +86,8 @@ public class InventoryManager : MonoBehaviour
 
             var newValues = CalculateGenerator(selectedGenerator, generator);
 
-            generatorInventory[generator].currentCost = newValues.currentCost; //_____________ALGUMA CONTA PARA CALCULAR NOVO COST;
-            generatorInventory[generator].currentPps = newValues.currentPps; //_____________ALGUMA CONTA PARA CALCULAR NOVO PPS;
+            generatorInventory[generatorObject].currentCost = newValues.currentCost; //_____________ALGUMA CONTA PARA CALCULAR NOVO COST;
+            generatorInventory[generatorObject].currentPps = newValues.currentPps; //_____________ALGUMA CONTA PARA CALCULAR NOVO PPS;
         }
         else
         {
@@ -77,7 +95,7 @@ public class InventoryManager : MonoBehaviour
             //Debug.Log($"Preço inicial de {generator.name} | { generator.baseCost }");  //NAO FAZ SENTIDO, ESSE EH O PRECO ANTERIOR
 
             generatorInventory.Add(
-                generator, 
+                generatorObject, 
                 new InventoryInfo() { 
                     quantity = quantity,
                     currentCost = generator.baseCost,   //TALVEZ CALCULAR NOVO COST aqui tbm, pois assim o 2o gerador ja tera custo diferente.
@@ -86,8 +104,8 @@ public class InventoryManager : MonoBehaviour
             );
         }
 
-        var newPrice = generatorInventory[generator].currentCost;
-        var newQuantity = generatorInventory[generator].quantity;
+        var newPrice = generatorInventory[generatorObject].currentCost;
+        var newQuantity = generatorInventory[generatorObject].quantity;
         
         //Debug.Log($"Preço de {generator.name} | { newPrice.ToString("F0") }");
         Debug.Log($"Quantidade de {generator.name} | {newQuantity.ToString("F0")}");
@@ -98,11 +116,11 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void AddGeneratorUpgrade(GeneratorSO generator, UpgradeSO upgrade)
+    public void AddGeneratorUpgrade(Generator generatorObject, UpgradeSO upgrade)
     {
-        if (generatorInventory.ContainsKey(generator))
+        if (generatorInventory.ContainsKey(generatorObject))
         {
-            generatorInventory[generator].currentUpgrade = upgrade;
+            generatorInventory[generatorObject].currentUpgrade = upgrade;
             //generatorInventory[generator].currentPps = //ALGUMA CONTA PARA CALCULAR NOVO PPS, POREEEM BASEADA NO UPGRADE;
         }
         else
@@ -111,7 +129,7 @@ public class InventoryManager : MonoBehaviour
             //TALVEZ EXIBIR ERRO DE QUE NAO EH POSSIVEL COMPRAR UM UPGRADE DE UM GENERATOR QUE VOCE NAO POSSUI
             //Assim pode se evitar problemas de cheats e glitches
             generatorInventory.Add(
-                generator,
+                generatorObject,
                 new InventoryInfo()
                 {
                     quantity = 1,

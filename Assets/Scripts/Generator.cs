@@ -10,7 +10,11 @@ public class Generator : MonoBehaviour
     public TMP_Text quantityField;
     public TMP_Text priceField;
 
-    public bool playerHasEnoughCredits;
+    public bool playerHasEnoughCredits = false;
+    
+    //provisoria
+    public bool _firstBuy = true;
+
     Button buyButton;
 
 
@@ -18,6 +22,7 @@ public class Generator : MonoBehaviour
     {
         priceField.text = generatorConfigs.baseCost.ToString("F0");
         quantityField.text = 0.ToString("F0");
+        buyButton = this.GetComponent<Button>();
     }
 
     public void Add()
@@ -31,7 +36,7 @@ public class Generator : MonoBehaviour
             return;
         }
 
-        inventoryManager.AddGenerator(generatorConfigs, this);
+        inventoryManager.AddGenerator(this);
     }
 
     //PROVISORIO PARA A ENTREGA DO EVENTO
@@ -42,13 +47,19 @@ public class Generator : MonoBehaviour
 
         if (playerHasEnoughCredits)
         {
-            if (!buyButton.interactable)
-            {
-                EnableBuyButton();
-            }
+            if (!buyButton.interactable) EnableBuyButton();
         }
         else 
         {
+            if (_firstBuy) 
+            {
+                if (ClickManager.Instance.totalAmount >= generatorConfigs.baseCost) 
+                {
+                    EnableBuyButton();
+                    return;
+                }
+            }
+
             DisableBuyButton();
         }
     }
