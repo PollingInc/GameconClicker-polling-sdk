@@ -31,6 +31,8 @@ public class ClickHandler : MonoBehaviour
         clickAnim = this.GetComponent<ClickAnimation>();
         levelManager = this.GetComponent<LevelManager>();
         inventoryManager = this.GetComponent<InventoryManager>();
+
+        StartCoroutine(AutoClickRoutine());
     }
 
     //USANDO NO ClickArea do CANVAS em OnClick 
@@ -43,6 +45,19 @@ public class ClickHandler : MonoBehaviour
         //PROVISORIO PARA EVENTO
         //inventoryManager.PricesFlush();
     }
+
+    public IEnumerator AutoClickRoutine()
+    {
+        while (true)
+        {
+            if (currentPps == 0) yield return null;
+
+            clickManager.AddAmount(currentPps);
+            yield return new WaitForSecondsRealtime(1.0f);
+        }
+        
+    }
+
 
 
     public void RecalculateAllValues()

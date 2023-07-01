@@ -149,7 +149,9 @@ public class InventoryManager : MonoBehaviour
         var newPps = generator.basePps * currentValues.quantity;
 
         //COST FORMULA
-        var newCost = generator.baseCost * (Mathf.Pow(1.07f, currentValues.quantity));
+        //var newCost = generator.baseCost * (Mathf.Pow(1.07f, currentValues.quantity));
+        //var newCost = generator.baseCost * (Mathf.Pow(1.07f, currentValues.quantity * generator.staticModifier));
+        var newCost = generator.baseCost * (Mathf.Pow(1.07f * generator.staticModifier, currentValues.quantity));
 
 
         currentValues.currentPps = newPps;

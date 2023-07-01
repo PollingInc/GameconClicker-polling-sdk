@@ -16,7 +16,8 @@ public class ClickManager : MonoBehaviour
     public TMP_Text amountDisplay;
     public TMP_Text ppsDisplay;
 
-    public LevelManager levelManager;
+    LevelManager levelManager;
+    ClickHandler clickHandler;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class ClickManager : MonoBehaviour
         //TEMPORARIO PARA EVENTO
 
         levelManager = this.GetComponent<LevelManager>();
+        clickHandler = this.GetComponent<ClickHandler>();
     }
 
 
@@ -63,6 +65,7 @@ public class ClickManager : MonoBehaviour
 
 
         amountDisplay.text = totalAmount.ToString("F0");
+        ppsDisplay.text = clickHandler.currentPps.ToString("F0") + " pps";
     }
 
 

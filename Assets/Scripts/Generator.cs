@@ -67,11 +67,13 @@ public class Generator : MonoBehaviour
 
     public void EnableBuyButton()
     {
+        buyButton.enabled = true;
         buyButton.interactable = true;
     }
 
     public void DisableBuyButton()
     {
+        buyButton.enabled = false;
         buyButton.interactable = false;
     }
 
