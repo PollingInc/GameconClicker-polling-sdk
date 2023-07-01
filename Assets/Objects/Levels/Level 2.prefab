@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5636321508993934478}
   - component: {fileID: 7639992635778279286}
   m_Layer: 0
-  m_Name: Level2
+  m_Name: Level 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -449,7 +449,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 8.98

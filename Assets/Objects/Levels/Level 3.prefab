@@ -189,7 +189,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 8.98
@@ -307,7 +307,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 8.98
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 8877768457481473309}
   - component: {fileID: 6701619713681030155}
   m_Layer: 0
-  m_Name: Level3
+  m_Name: Level 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -569,7 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 5461539593936798125}
   isConcluded: 0
-  cumulativeGoal: 12000
+  cumulativeGoal: 6000
   currentCumulative: 0
 --- !u!114 &6701619713681030155
 MonoBehaviour:
@@ -587,6 +587,7 @@ MonoBehaviour:
   - {fileID: 152992560225853987}
   - {fileID: 67816956967237405}
   - {fileID: 6017903500483794069}
+  - {fileID: 5340778438299412383}
 --- !u!1 &4160854200733389209
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +790,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 8.98
@@ -1651,6 +1652,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aee75951f22bb2e4697b08e7a15638b0, type: 3}
+--- !u!111 &5340778438299412383 stripped
+Animation:
+  m_CorrespondingSourceObject: {fileID: 2223639932434330405, guid: aee75951f22bb2e4697b08e7a15638b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6108487540794840250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6003030506189665105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aee75951f22bb2e4697b08e7a15638b0,
