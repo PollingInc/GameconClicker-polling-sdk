@@ -88,42 +88,20 @@ public class PollingHandler : MonoBehaviour
     {
         string url = "https://demo.polling.com/sdk/survey/3875c65f-1e7a-411f-b8c3-be2ce19a9c6e";
 
-        //var unityActivity = UnityActivity();
-        Debug.Log("Opening Java WebView bottom sheet for available surveys...");
+        var unityActivity = UnityActivity();
 
-
-
-        var unityActivity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
-
-        try
+        using (unityActivity) 
         {
-            AndroidJavaObject fragmentManager = unityActivity.Call<AndroidJavaObject>("getSupportFragmentManager");
-            Debug.Log("Successfully obtained the FragmentManager");
+            Debug.Log("Opening Java WebView bottom sheet for available surveys...");
+            AndroidJavaObject webViewBottom = new AndroidJavaObject("com.polling.sdk.WebViewBottomCustom", url, DialogRequest());
+            webViewBottom.Call("show");
         }
-        catch (AndroidJavaException e)
-        {
-            Debug.LogError($"Exception calling getSupportFragmentManager: {e.Message}");
-        }
+        
 
 
-        unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
-        {
-            try
-            {
-                AndroidJavaObject fragmentManager = unityActivity.Call<AndroidJavaObject>("getSupportFragmentManager");
-                Debug.Log("Successfully obtained the FragmentManager");
-            }
-            catch (AndroidJavaException e)
-            {
-                Debug.LogError($"Inside Exception calling getSupportFragmentManager: {e.Message}");
-            }
 
+        //For old bottom sheet which used AppCompatActivity (the new one runs with Dialog that runs on Activity)
 
-            AndroidJavaObject webViewBottom = new AndroidJavaObject("com.polling.sdk.WebViewBottom", url, RequestIdentification());
-            
-            string tag = webViewBottom.Call<string>("getTag");
-            //webViewBottom.Call("show", fragmentManager, tag);
-        }));
         /*
 
         unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
