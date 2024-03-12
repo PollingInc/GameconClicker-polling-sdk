@@ -550,6 +550,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 65005092722812497, guid: d4c94390521661748b96b8db816816e7,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4135841794961019576, guid: d4c94390521661748b96b8db816816e7,
         type: 3}
       propertyPath: m_Name
@@ -6698,6 +6703,21 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4312386358587736217, guid: 50486904be12b8f4e8555a4450e81c9d,
+        type: 3}
+      propertyPath: m_Range
+      value: 32.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312386358587736217, guid: 50486904be12b8f4e8555a4450e81c9d,
+        type: 3}
+      propertyPath: m_SpotAngle
+      value: 48.24135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4312386358587736217, guid: 50486904be12b8f4e8555a4450e81c9d,
+        type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 48.24135
+      objectReference: {fileID: 0}
     - target: {fileID: 5050812544366037419, guid: 50486904be12b8f4e8555a4450e81c9d,
         type: 3}
       propertyPath: m_IsActive
@@ -6756,7 +6776,7 @@ PrefabInstance:
     - target: {fileID: 8615746450006108210, guid: 50486904be12b8f4e8555a4450e81c9d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.12
+      value: 8.88
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
