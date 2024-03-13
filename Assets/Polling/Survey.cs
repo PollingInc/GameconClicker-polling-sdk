@@ -5,20 +5,20 @@ namespace Polling {
 
     public enum ViewType
     {
-        None,
-        Dialog,
-        Bottom
+        None = 0 ,
+        Dialog = 1,
+        Bottom = 2
     }
 
     public class CallbackHandler
     {
-        public Action onSuccess;
-        public Action onFailure;
+        public Action<string> onSuccess;
+        public Action<string> onFailure;
         public AndroidJavaObject callbackHandler;
 
-        public CallbackHandler(GameObject target, Action onSuccess, Action onFailure)
+        public CallbackHandler(GameObject target, Action<string> onSuccess, Action<string> onFailure)
         {
-            var callbackHandler = new AndroidJavaObject("com.polling.sdk.UnityCallbackHandler", target.name, onSuccess.ToString(), onFailure.ToString());
+            var callbackHandler = new AndroidJavaObject("com.polling.sdk.UnityCallbackHandler", target.name, onSuccess.Method.Name, onFailure.Method.Name);
 
             this.onSuccess = onSuccess;
             this.onFailure = onFailure;
@@ -35,7 +35,7 @@ namespace Polling {
 
         public Survey(RequestIdentification requestIdentification, CallbackHandler callbackHandler)
         {
-            survey = new AndroidJavaObject("com.polling.sdk.Survey", requestIdentification, callbackHandler.callbackHandler);
+            survey = new AndroidJavaObject("com.polling.sdk.Survey", requestIdentification.requestIdentification, callbackHandler.callbackHandler);
         }
 
         public void AvailableSurveys()
@@ -45,7 +45,7 @@ namespace Polling {
 
         public void AvailableSurveys(ViewType viewType)
         {
-            survey.Call("availableSurveys", Bridge.UnityActivity(), viewType);
+            survey.Call("availableSurveys", Bridge.UnityActivity(), viewType.ToString());
         }
 
 
@@ -56,7 +56,7 @@ namespace Polling {
 
         public void SingleSurvey(string surveyId, ViewType viewType)
         {
-            survey.Call("singleSurvey", surveyId, Bridge.UnityActivity(), viewType);
+            survey.Call("singleSurvey", surveyId, Bridge.UnityActivity(), viewType.ToString());
         }
 
 

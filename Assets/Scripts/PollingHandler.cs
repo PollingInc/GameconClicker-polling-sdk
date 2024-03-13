@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Polling;
 
 public class PollingHandler : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class PollingHandler : MonoBehaviour
 
     public string customerId;
     private string apiKey;
+    Survey survey;
 
-    void Start()
+
+    public void InfoSetup()
     {
         customerId = Random.Range(1, 1000).ToString();
         apiKey = "cli_wZJW1tH39TfUMbEumPLrDy15EXDqJA0a";
@@ -21,7 +24,48 @@ public class PollingHandler : MonoBehaviour
         pollingButton.SetBool("toggle", !pollingButton.GetBool("toggle"));
     }
 
+    void Start()
+    {
+        InfoSetup();
 
+        Request request = new Request();
+        var requestIdentification = request.RequestIdentification(customerId, apiKey);
+
+        CallbackHandler callbacks = new(this.gameObject, OnSuccess, OnFailure);
+
+        survey = new Survey(requestIdentification, callbacks);
+    }
+
+
+    private void OnSuccess(string response)
+    {
+        Debug.Log("SUCCESS: " + response);
+    }
+
+    private void OnFailure(string error)
+    {
+        Debug.Log("ERROR: " + error);
+    }
+
+
+    public void AvailableSurveysApi()
+    {
+        survey.AvailableSurveys();
+    }
+    public void PopupSurveyBottom()
+    {
+        survey.AvailableSurveys(ViewType.Bottom);
+    }
+    public void PopupSurveyDialog()
+    {
+        survey.AvailableSurveys(ViewType.Dialog);
+    }
+
+
+
+
+
+    /*
 
     private AndroidJavaObject UnityActivity()
     {
@@ -96,25 +140,6 @@ public class PollingHandler : MonoBehaviour
             AndroidJavaObject webViewBottom = new AndroidJavaObject("com.polling.sdk.WebViewBottomCustom", url, DialogRequest());
             webViewBottom.Call("show");
         }
-        
-
-
-
-        //For old bottom sheet which used AppCompatActivity (the new one runs with Dialog that runs on Activity)
-
-        /*
-
-        unityActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
-        {
-            fragmentManager = unityActivity.Call<AndroidJavaObject>("getSupportFragmentManager");
-            webViewBottom = new AndroidJavaObject("com.polling.sdk.WebViewBottom", url, RequestIdentification());
-        }));
-
-        string tag = webViewBottom.Call<string>("getTag");
-        Debug.Log("tag: " + tag);
-        webViewBottom.Call("show", fragmentManager, tag);
-        */
-
     }
 
 
@@ -136,7 +161,7 @@ public class PollingHandler : MonoBehaviour
         }
     }
 
-
+    */
 
 
 }
