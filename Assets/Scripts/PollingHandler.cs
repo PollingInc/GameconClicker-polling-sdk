@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Polling;
+using System;
 
 public class PollingHandler : MonoBehaviour
 {
 
     public Animator pollingButton;
+    public EconomyHandler economyHandler;
 
     public string customerId;
     private string apiKey;
@@ -15,7 +17,7 @@ public class PollingHandler : MonoBehaviour
 
     public void InfoSetup()
     {
-        customerId = Random.Range(1, 1000).ToString();
+        customerId = UnityEngine.Random.Range(1, 1000).ToString();
         apiKey = "cli_wZJW1tH39TfUMbEumPLrDy15EXDqJA0a";
     }
 
@@ -29,7 +31,7 @@ public class PollingHandler : MonoBehaviour
         InfoSetup();
 
         Identifier request = new Identifier(customerId, apiKey);
-        CallbackHandler callbacks = new(this.gameObject, OnSuccess, OnFailure);
+        CallbackHandler callbacks = new(this.gameObject, OnSuccess, OnFailure, OnReward);
 
         survey = new Survey(request, callbacks);
     }
@@ -43,6 +45,28 @@ public class PollingHandler : MonoBehaviour
     private void OnFailure(string error)
     {
         Debug.Log("ERROR: " + error);
+    }
+
+    private void OnReward(string response)
+    {
+        List<Reward> rewards = survey.OnReward(response);
+        HandleRewards(rewards);
+    }
+
+    void HandleRewards(List<Reward> rewards)
+    {
+        foreach(Reward reward in rewards)
+        {
+            bool success = Enum.TryParse(reward.reward_name, out EconomyType type);
+            success = int.TryParse(reward.reward_amount, out int amount);
+
+            if (success)
+            {
+                economyHandler.UpdateEconomyAssetValue(type, amount);
+            }
+            
+        }
+        
     }
 
 
