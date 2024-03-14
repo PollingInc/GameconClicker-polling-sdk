@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Polling { 
@@ -10,32 +11,14 @@ namespace Polling {
         Bottom = 2
     }
 
-    public class CallbackHandler
-    {
-        public Action<string> onSuccess;
-        public Action<string> onFailure;
-        public AndroidJavaObject callbackHandler;
-
-        public CallbackHandler(GameObject target, Action<string> onSuccess, Action<string> onFailure)
-        {
-            var callbackHandler = new AndroidJavaObject("com.polling.sdk.UnityCallbackHandler", target.name, onSuccess.Method.Name, onFailure.Method.Name);
-
-            this.onSuccess = onSuccess;
-            this.onFailure = onFailure;
-
-            this.callbackHandler = callbackHandler;
-        }
-    }
-
-
     public class Survey
     {
 
         private AndroidJavaObject survey;
 
-        public Survey(RequestIdentification requestIdentification, CallbackHandler callbackHandler)
+        public Survey(Identifier identifier, CallbackHandler callbackHandler)
         {
-            survey = new AndroidJavaObject("com.polling.sdk.Survey", requestIdentification.requestIdentification, callbackHandler.callbackHandler);
+            survey = new AndroidJavaObject("com.polling.sdk.Survey", identifier.requestIdentification, callbackHandler.callbackHandler);
         }
 
         public void AvailableSurveys()
@@ -63,6 +46,42 @@ namespace Polling {
         public void CompletedSurveys()
         {
             survey.Call("completedSurveys");
+        }
+
+
+        private void OnReward(string response)
+        {
+            //List<Dictionary<string, string>> surveys = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(response);
+            RewardList rewardList = new();
+            List<Reward> rewards = rewardList.DeserializeSurveys(response);
+
+            foreach (Reward reward in rewards) 
+            {
+                Debug.Log($"{reward.reward_name} | {reward.reward_amount}");
+            }
+
+        }
+    }
+
+    class Reward
+    {
+        public string completed_at;
+        public string reward_amount;
+        public string reward_name;
+        public string name;
+        public string started_at;
+        public string uuid;
+    }
+
+    class RewardList
+    {
+        public List<Reward> rewards;
+
+        public List<Reward> DeserializeSurveys(string jsonArray)
+        {
+            string json = "{\"surveys\":" + jsonArray + "}";
+            rewards = JsonUtility.FromJson<List<Reward>>(json);
+            return rewards;
         }
     }
 }
