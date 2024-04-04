@@ -18,7 +18,7 @@ public class PollingHandler : MonoBehaviour
     public void InfoSetup()
     {
         customerId = UnityEngine.Random.Range(1, 1000).ToString();
-        apiKey = "cli_wZJW1tH39TfUMbEumPLrDy15EXDqJA0a";
+        apiKey = "app_JDcvivKMJYiOT8fdyII6Dy9T5ug26BJ6";
     }
 
     public void ToggleButton()
