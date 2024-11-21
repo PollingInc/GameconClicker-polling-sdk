@@ -4,6 +4,93 @@ using UnityEngine;
 using Polling;
 using System;
 
+
+public class PollingHandler : MonoBehaviour
+{
+    public Animator pollingButton;
+    RequestIdentifier requestIdentifier;
+
+    public void Initialize()
+    {
+        
+        if (!FlutterBridge.IsInitialized())
+        {
+            FlutterBridge.Initialize();
+            requestIdentifier = new(UnityEngine.Random.Range(1, 1000).ToString(), "cli_wZJW1tH39TfUMbEumPLrDy15EXDqJA0a");
+        }
+        
+    }
+
+
+    public void ToggleButton()
+    {
+        pollingButton.SetBool("toggle", !pollingButton.GetBool("toggle"));
+    }
+
+
+    public void PopupSurveyDialog()
+    {
+        if (!FlutterBridge.IsInitialized()) return;
+
+        FlutterBridge.AvailableSurveysWithViewType(UnityEngine.Random.Range(1, 1000).ToString(), "cli_wZJW1tH39TfUMbEumPLrDy15EXDqJA0a", (int)ViewType.Dialog);
+    }
+
+    public void PopupSurveyBottom()
+    {
+        if (!FlutterBridge.IsInitialized()) return;
+
+        FlutterBridge.AvailableSurveysWithViewType(UnityEngine.Random.Range(1, 1000).ToString(), "cli_wZJW1tH39TfUMbEumPLrDy15EXDqJA0a", (int)ViewType.Bottom);
+    }
+
+
+
+    /*
+    public void PopupSurveyDialog()
+    {
+        // Replace with actual customerId and apiKey
+        FlutterBridge.AvailableSurveysWithViewType(requestIdentifier.customerId, requestIdentifier.apiKey, (int)ViewType.Dialog);
+    }
+
+    public void PopupSurveyBottom()
+    {
+        FlutterBridge.AvailableSurveysWithViewType(requestIdentifier.customerId, requestIdentifier.apiKey, (int)ViewType.Bottom);
+    }
+    */
+
+
+
+
+    public void ShowSingleSurvey(string surveyId)
+    {
+        if (!FlutterBridge.IsInitialized()) return;
+        FlutterBridge.SingleSurveyWithViewType(surveyId, requestIdentifier.customerId, requestIdentifier.apiKey, (int)ViewType.Bottom);
+    }
+
+    public void OnFlutterMessageReceived(string message)
+    {
+        if (!FlutterBridge.IsInitialized()) return;
+        FlutterBridge.ReceiveCallbackFromFlutter(message);
+    }
+}
+
+
+public class RequestIdentifier
+{
+    public string customerId;
+    public string apiKey;
+
+    public RequestIdentifier(string customerId, string apiKey)
+    {
+        this.customerId = customerId;
+        this.apiKey = apiKey;
+
+    }
+}
+
+
+
+
+/*
 public class PollingHandler : MonoBehaviour
 {
 
@@ -83,3 +170,4 @@ public class PollingHandler : MonoBehaviour
         survey.AvailableSurveys(ViewType.Dialog);
     }
 }
+*/
