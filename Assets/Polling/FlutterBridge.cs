@@ -12,7 +12,7 @@ public static class FlutterBridge
 
     public static void Initialize()
     {
-        /*
+        
         try
         {
 
@@ -30,8 +30,8 @@ public static class FlutterBridge
         {
             Debug.LogError($"Exception during FlutterBridge initialization: {ex}");
         }
-        */
         
+        /*
         try
         {
 
@@ -41,13 +41,6 @@ public static class FlutterBridge
 
             flutterBridge = new AndroidJavaObject("com.polling.sdk_android.JavaBridge", unityActivity);
 
-            /*
-            using (AndroidJavaObject javaBridge = new AndroidJavaObject("com.polling.sdk_android.JavaBridge", unityActivity))
-            {
-                javaBridge.Call("launchFlutterActivity");
-            }
-            */
-
             Debug.Log("Flutter Bridge initialized successfully.");
             initialized = true;
         }
@@ -55,7 +48,7 @@ public static class FlutterBridge
         {
             Debug.LogError($"Exception during FlutterBridge initialization: {ex}");
         }
-
+        */
     }
 
 
@@ -72,10 +65,10 @@ public static class FlutterBridge
     /// </summary>
     public static void AvailableSurveysWithViewType(string customerId, string apiKey, int viewType)
     {
-        flutterBridge.Call("launchFlutterActivity");
-        /*
+        //flutterBridge.Call("launchFlutterActivity");
+        
         flutterBridge.Call("availableSurveysWithViewType", customerId, apiKey, viewType);
-        */
+        
     }
 
     /// <summary>
