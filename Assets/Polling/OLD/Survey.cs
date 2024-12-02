@@ -22,7 +22,7 @@ namespace Polling {
             survey = new AndroidJavaObject("com.polling.sdk.Survey", identifier.requestIdentification, callbackHandler.callbackHandler);
             this.callbackHandler = callbackHandler;
 
-            this.rewardCallback = new CallbackHandler(callbackHandler.gameObject, callbackHandler.onReward, callbackHandler.onFailure, callbackHandler.onReward);
+            this.rewardCallback = new CallbackHandler(callbackHandler.gameObject, callbackHandler.onReward, callbackHandler.onFailure, callbackHandler.onReward, callbackHandler.onSurveyAvailable);
         }
 
         public void AvailableSurveys()
