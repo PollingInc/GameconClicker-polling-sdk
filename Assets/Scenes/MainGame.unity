@@ -5030,7 +5030,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pollingButton: {fileID: 1583977720}
-  initialized: 0
 --- !u!1 &1607981243
 GameObject:
   m_ObjectHideFlags: 0
