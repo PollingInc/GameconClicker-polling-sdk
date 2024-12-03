@@ -16,7 +16,7 @@ namespace Polling
         {
             if (customerId == null || apiKey == null) return null;
 
-            return new AndroidJavaObject("com.polling.sdk.core.modelsRequestIdentification", customerId, apiKey);
+            return new AndroidJavaObject("com.polling.sdk.core.models.RequestIdentification", customerId, apiKey);
         }
 
 

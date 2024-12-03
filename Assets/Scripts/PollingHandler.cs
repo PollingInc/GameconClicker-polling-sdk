@@ -32,7 +32,7 @@ public class PollingHandler : MonoBehaviour
         InfoSetup();
 
         RequestIdentification request = new RequestIdentification(customerId, apiKey);
-        CallbackHandler callbacks = new(this.gameObject, OnSuccess, OnFailure, OnReward, OnSurveyAvailable);
+        CallbackHandler callbacks = new CallbackHandler(this.gameObject, OnSuccess, OnFailure, OnReward, OnSurveyAvailable);
 
         SdkPayload sdkPayload = new SdkPayload(request, callbacks, false);
 
@@ -43,12 +43,12 @@ public class PollingHandler : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------
     private void OnSuccess(string response)
     {
-        Debug.Log("SUCCESS: " + response);
+        Debug.Log("SUCCESS (Unity): " + response);
     }
 
     private void OnFailure(string error)
     {
-        Debug.Log("ERROR: " + error);
+        Debug.Log("ERROR (Unity): " + error);
     }
 
     private void OnReward(string response)
@@ -59,7 +59,7 @@ public class PollingHandler : MonoBehaviour
 
     private void OnSurveyAvailable()
     {
-        Debug.Log("There is a survey available.");
+        Debug.Log("(Unity) There is a survey available.");
     }
 
     //----------------------------------------------------------------------------------------------------------------
@@ -67,7 +67,7 @@ public class PollingHandler : MonoBehaviour
     {
         foreach(Reward reward in rewards)
         {
-            Debug.Log($"Unity Reward: {reward.reward_name} | {reward.reward_amount}");
+            Debug.Log($"(Unity) Reward: {reward.reward_name} | {reward.reward_amount}");
 
             bool nameSuccess = Enum.TryParse(reward.reward_name, out EconomyType type);
             bool valueSuccess = int.TryParse(reward.reward_amount, out int amount);
