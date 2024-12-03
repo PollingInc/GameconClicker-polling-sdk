@@ -12,12 +12,13 @@ public class PollingHandler : MonoBehaviour
 
     public string customerId;
     private string apiKey;
-    Survey survey;
+
+    Polling.Polling polling;
 
 
     public void InfoSetup()
     {
-        customerId = UnityEngine.Random.Range(1, 1000).ToString();
+        customerId = "unityTest" + UnityEngine.Random.Range(1, 1000).ToString();
         apiKey = "app_JDcvivKMJYiOT8fdyII6Dy9T5ug26BJ6";
     }
 
@@ -30,13 +31,16 @@ public class PollingHandler : MonoBehaviour
     {
         InfoSetup();
 
-        Identifier request = new Identifier(customerId, apiKey);
+        RequestIdentification request = new RequestIdentification(customerId, apiKey);
         CallbackHandler callbacks = new(this.gameObject, OnSuccess, OnFailure, OnReward, OnSurveyAvailable);
 
-        survey = new Survey(request, callbacks);
+        SdkPayload sdkPayload = new SdkPayload(request, callbacks, false);
+
+        polling = new Polling.Polling();
+        polling.Initialize(sdkPayload);
     }
 
-
+    //----------------------------------------------------------------------------------------------------------------
     private void OnSuccess(string response)
     {
         Debug.Log("SUCCESS: " + response);
@@ -49,7 +53,7 @@ public class PollingHandler : MonoBehaviour
 
     private void OnReward(string response)
     {
-        List<Reward> rewards = survey.OnReward(response);
+        List<Reward> rewards = Reward.Deserialize(response);
         HandleRewards(rewards);
     }
 
@@ -58,33 +62,32 @@ public class PollingHandler : MonoBehaviour
         Debug.Log("There is a survey available.");
     }
 
+    //----------------------------------------------------------------------------------------------------------------
     void HandleRewards(List<Reward> rewards)
     {
         foreach(Reward reward in rewards)
         {
-            bool success = Enum.TryParse(reward.reward_name, out EconomyType type);
-            success = int.TryParse(reward.reward_amount, out int amount);
+            Debug.Log($"Unity Reward: {reward.reward_name} | {reward.reward_amount}");
 
-            if (success)
+            bool nameSuccess = Enum.TryParse(reward.reward_name, out EconomyType type);
+            bool valueSuccess = int.TryParse(reward.reward_amount, out int amount);
+
+            if (nameSuccess && valueSuccess)
             {
                 economyHandler.UpdateEconomyAssetValue(type, amount);
             }
-            
-        }
-        
+        } 
     }
 
-
-    public void AvailableSurveysApi()
-    {
-        survey.AvailableSurveys();
-    }
+    //----------------------------------------------------------------------------------------------------------------
     public void PopupSurveyBottom()
     {
-        survey.AvailableSurveys(ViewType.Bottom);
+        polling.SetViewType(ViewType.Bottom);
+        polling.LogEvent("unityTest", 1);
     }
     public void PopupSurveyDialog()
     {
-        survey.AvailableSurveys(ViewType.Dialog);
+        polling.SetViewType(ViewType.Dialog);
+        polling.LogEvent("unityTest", 1);
     }
 }

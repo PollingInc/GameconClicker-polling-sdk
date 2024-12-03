@@ -15,17 +15,15 @@ namespace Polling
 
         public CallbackHandler(GameObject target, Action<string> onSuccess, Action<string> onFailure, Action<string> onReward, Action onSurveyAvailable)
         {
-            var callbackHandler = new AndroidJavaObject("com.polling.sdk.UnityCallbackHandler", target.name, 
-                onSuccess.Method.Name, onFailure.Method.Name, 
-                onReward.Method.Name, onSurveyAvailable.Method.Name);
-
             this.gameObject = target;
             this.onSuccess = onSuccess;
             this.onFailure = onFailure;
             this.onReward = onReward;
             this.onSurveyAvailable = onSurveyAvailable;
 
-            this.callbackHandler = callbackHandler;
+            this.callbackHandler = Bridge.CallbackHandler(target.name,
+                onSuccess.Method.Name, onFailure.Method.Name,
+                onReward.Method.Name, onSurveyAvailable.Method.Name);
         }
     }
 }

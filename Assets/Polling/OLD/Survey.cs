@@ -17,7 +17,7 @@ namespace Polling {
         private AndroidJavaObject survey;
         private CallbackHandler callbackHandler;
         private CallbackHandler rewardCallback;
-        public Survey(Identifier identifier, CallbackHandler callbackHandler)
+        public Survey(RequestIdentification identifier, CallbackHandler callbackHandler)
         {
             survey = new AndroidJavaObject("com.polling.sdk.Survey", identifier.requestIdentification, callbackHandler.callbackHandler);
             this.callbackHandler = callbackHandler;
