@@ -19,7 +19,7 @@ public class PollingHandler : MonoBehaviour
     public void InfoSetup()
     {
         customerId = "unityTest" + UnityEngine.Random.Range(1, 1000).ToString();
-        apiKey = "app_JDcvivKMJYiOT8fdyII6Dy9T5ug26BJ6";
+        apiKey = "H3uZsrv6B2qyRXGePLxQ9U8g7vilWFTjIhZO";
     }
 
     public void ToggleButton()
@@ -53,8 +53,10 @@ public class PollingHandler : MonoBehaviour
 
     private void OnReward(string response)
     {
-        List<Reward> rewards = Reward.Deserialize(response);
-        HandleRewards(rewards);
+        Debug.Log("REWARD (Unity): " + "JSON - " + response);
+
+        Reward reward = Reward.Deserialize(response);
+        HandleReward(reward);
     }
 
     private void OnSurveyAvailable()
@@ -63,20 +65,17 @@ public class PollingHandler : MonoBehaviour
     }
 
     //----------------------------------------------------------------------------------------------------------------
-    void HandleRewards(List<Reward> rewards)
+    void HandleReward(Reward reward)
     {
-        foreach(Reward reward in rewards)
+        Debug.Log($"(Unity) Reward: {reward.reward_name} | {reward.reward_amount}");
+
+        bool nameSuccess = Enum.TryParse(reward.reward_name, out EconomyType type);
+        bool valueSuccess = int.TryParse(reward.reward_amount, out int amount);
+
+        if (nameSuccess && valueSuccess)
         {
-            Debug.Log($"(Unity) Reward: {reward.reward_name} | {reward.reward_amount}");
-
-            bool nameSuccess = Enum.TryParse(reward.reward_name, out EconomyType type);
-            bool valueSuccess = int.TryParse(reward.reward_amount, out int amount);
-
-            if (nameSuccess && valueSuccess)
-            {
-                economyHandler.UpdateEconomyAssetValue(type, amount);
-            }
-        } 
+            economyHandler.UpdateEconomyAssetValue(type, amount);
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------

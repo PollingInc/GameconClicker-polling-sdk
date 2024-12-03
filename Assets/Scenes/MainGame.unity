@@ -4757,7 +4757,7 @@ GameObject:
   - component: {fileID: 1553360976}
   - component: {fileID: 1553360977}
   m_Layer: 5
-  m_Name: Coins
+  m_Name: Rubies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4822,7 +4822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b57bcb6e7a4c7d4fbc9717357d568a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  economyType: 0
+  economyType: 1
   amountText: {fileID: 2106804584}
 --- !u!1 &1583977718
 GameObject:
@@ -5030,6 +5030,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pollingButton: {fileID: 1583977720}
+  economyHandler: {fileID: 736416297}
+  customerId: 
 --- !u!1 &1607981243
 GameObject:
   m_ObjectHideFlags: 0
@@ -6410,7 +6412,7 @@ GameObject:
   - component: {fileID: 2035316037}
   - component: {fileID: 2035316038}
   m_Layer: 5
-  m_Name: Rubies
+  m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6475,7 +6477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b57bcb6e7a4c7d4fbc9717357d568a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  economyType: 1
+  economyType: 0
   amountText: {fileID: 1124808586}
 --- !u!1 &2050299731
 GameObject:
