@@ -4,6 +4,15 @@ using UnityEngine;
 
 namespace Polling 
 {
+
+    public enum ViewType
+    {
+        None = 0,
+        Dialog = 1,
+        Bottom = 2
+    }
+
+
     public class Polling
     {
 
