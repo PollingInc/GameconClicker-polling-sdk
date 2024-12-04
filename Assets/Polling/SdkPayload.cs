@@ -8,6 +8,7 @@ namespace Polling {
         public CallbackHandler callbackHandler;
         public bool disableAvailableSurveysPoll;
 
+#if UNITY_ANDROID
         public AndroidJavaObject sdkPayload;
 
 
@@ -17,9 +18,18 @@ namespace Polling {
             this.callbackHandler = callbackHandler;
             this.disableAvailableSurveysPoll = disableAvailableSurveysPoll;
 
-            sdkPayload = Bridge.SdkPayload(requestIdentification.requestIdentification, callbackHandler.callbackHandler, disableAvailableSurveysPoll);
+            sdkPayload = JavaBridge.SdkPayload(requestIdentification.requestIdentification, callbackHandler.callbackHandler, disableAvailableSurveysPoll);
         }
 
+#elif UNITY_IOS
+
+        public SdkPayload(RequestIdentification requestIdentification, CallbackHandler callbackHandler, bool disableAvailableSurveysPoll)
+        {
+            //TO BE IMPLEMENTED
+        }
+
+
+#endif
     }
 
 }

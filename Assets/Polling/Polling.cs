@@ -13,14 +13,14 @@ namespace Polling
     }
 
 
-    public class Polling
+    public class Polling : IPolling
     {
-
+#if UNITY_ANDROID
         AndroidJavaObject polling;
 
         public Polling()
         {
-            polling = Bridge.Polling();
+            polling = JavaBridge.Polling();
         }
 
 
@@ -71,12 +71,12 @@ namespace Polling
 
         public void ShowSurvey(string surveyUuid)
         {
-            polling.Call("showSurvey", surveyUuid, Bridge.UnityActivity());
+            polling.Call("showSurvey", surveyUuid, JavaBridge.UnityActivity());
         }
 
         public void ShowEmbedView()
         {
-            polling.Call("showEmbedView", Bridge.UnityActivity());
+            polling.Call("showEmbedView", JavaBridge.UnityActivity());
         }
 
         /*
@@ -85,6 +85,56 @@ namespace Polling
             return localStorage.getItem(surveyUuid);
         }
         */
+#elif UNITY_IOS
+        public void Initialize(SdkPayload sdkPayload)
+        {
+            //TO BE IMPLEMENTED
+        }
 
+        public void LogEvent(string eventName, string eventValue)
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void LogEvent(string eventName, int eventValue)
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void LogPurchase(int integerCents)
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void LogSession()
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void SetApiKey(string apiKey)
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void SetCustomerId(string customerId)
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void SetViewType(ViewType viewType)
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void ShowEmbedView()
+        {
+            //TO BE IMPLEMENTED
+        }
+
+        public void ShowSurvey(string surveyUuid)
+        {
+            
+        }
+#endif
     }
 }

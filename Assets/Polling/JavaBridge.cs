@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Polling
 {
-
-    internal static class Bridge
+#if UNITY_ANDROID
+    internal static class JavaBridge
     {
         internal static AndroidJavaObject UnityActivity()
         {
@@ -44,7 +44,8 @@ namespace Polling
             return new AndroidJavaObject("com.polling.sdk.Polling");
         }
 
-
     }
+
+#endif
 
 }
