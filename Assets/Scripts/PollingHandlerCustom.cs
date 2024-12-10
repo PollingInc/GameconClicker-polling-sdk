@@ -1,32 +1,51 @@
 
 using Polling;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PollingHandlerCustom : MonoBehaviour
 {
 
-    public Animator pollingButton;
+    public GameObject pollingPanel;
     public EconomyHandler economyHandler;
 
     public string customerId;
     private string apiKey;
 
+    public TMP_InputField logEventInputKey;
+    public TMP_InputField logEventInputValue;
+
+
     Polling.Polling polling;
 
 
-    public void InfoSetup()
+    void Awake()
     {
-        customerId = "unityTest" + UnityEngine.Random.Range(1, 1000).ToString();
-        apiKey = "H3uZsrv6B2qyRXGePLxQ9U8g7vilWFTjIhZO";
+        pollingPanel.SetActive(false);
     }
 
     public void ToggleButton()
     {
-        pollingButton.SetBool("toggle", !pollingButton.GetBool("toggle"));
+        pollingPanel.SetActive(!pollingPanel.activeInHierarchy);
     }
 
+
+    //----------------------------------------------------------------------------------------------------------------
+    public void InfoSetup()
+    {
+        customerId = GetUserId();
+        apiKey = "H3uZsrv6B2qyRXGePLxQ9U8g7vilWFTjIhZO";
+    }
+    //----------------------------------------------------------------------------------------------------------------
+    private string GetUserId()
+    {
+        return "unityTest"  + DateTime.UtcNow.ToLongDateString();
+    }
+
+
+
+    //----------------------------------------------------------------------------------------------------------------
     void Start()
     {
         InfoSetup();
@@ -79,14 +98,48 @@ public class PollingHandlerCustom : MonoBehaviour
     }
 
     //----------------------------------------------------------------------------------------------------------------
-    public void PopupSurveyBottom()
+    
+    public void ShowSurvey(TMP_InputField uuid)
     {
-        polling.SetViewType(ViewType.Bottom);
-        polling.LogEvent("unityTest", 1);
+        polling.ShowSurvey(uuid.text);
     }
-    public void PopupSurveyDialog()
+
+    public void ShowEmbed()
     {
-        polling.SetViewType(ViewType.Dialog);
-        polling.LogEvent("unityTest", 1);
+        polling.ShowEmbedView();
     }
+
+    //----------------------------------------------------------------------------------------------------------------
+
+    public void LogEvent()
+    {
+        polling.LogEvent(logEventInputKey.text, logEventInputValue.text);
+    }
+
+    public void LogSession()
+    {
+        polling.LogSession();
+    }
+
+
+    public void LogPurchase(TMP_InputField value)
+    {
+        string normalizedValue = value.text.Replace(',', '.');
+
+        if (Double.TryParse(normalizedValue, out double result))
+        {
+            int parsed = (int)(result * 100);
+            polling.LogPurchase(parsed);
+        }
+    }
+
+    //----------------------------------------------------------------------------------------------------------------
+    public void SetViewType(string viewTypeStr)
+    {
+        if(Enum.TryParse(viewTypeStr, out ViewType viewType))
+        {
+            polling.SetViewType(viewType);
+        }   
+    }
+
 }

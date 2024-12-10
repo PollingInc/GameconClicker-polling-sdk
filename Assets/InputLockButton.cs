@@ -9,8 +9,7 @@ using System.Linq;
 public class InputLockButton : MonoBehaviour
 {
     public Button targetButton;
-    public List<TMP_InputField> inputs;
-    private List<TMP_InputField> optionalInputs;
+    public List<TMP_InputField> exclusiveInputs;
 
     private Dictionary<TMP_InputField, bool> checkedInputs;
 
@@ -18,9 +17,9 @@ public class InputLockButton : MonoBehaviour
 
     public void Changed(TMP_InputField input)
     {
-        if (inputs.Contains(input))
+        if (exclusiveInputs.Contains(input))
         {
-            checkedInputs[input] = true;
+            checkedInputs[input] = !string.IsNullOrEmpty(input.text);
             Check();
         }
     }
@@ -30,9 +29,12 @@ public class InputLockButton : MonoBehaviour
 
     void Awake()
     {
-        targetButton.enabled = false;
+        checkedInputs = new();
 
-        foreach(var input in inputs)
+        targetButton.interactable = false;
+        
+
+        foreach(var input in exclusiveInputs)
         {
             checkedInputs.Add(input, !string.IsNullOrEmpty(input.text));
         }
@@ -45,7 +47,7 @@ public class InputLockButton : MonoBehaviour
     {
         if(checkedInputs.Where(c => c.Value).Count() == checkedInputs.Count())
         {
-            targetButton.enabled = true;
+            targetButton.interactable = true;
         }
 
     }
