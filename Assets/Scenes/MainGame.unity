@@ -4437,6 +4437,7 @@ GameObject:
   - component: {fileID: 936649243}
   - component: {fileID: 936649242}
   - component: {fileID: 936649241}
+  - component: {fileID: 936649244}
   m_Layer: 5
   m_Name: Show Survey
   m_TagString: Untagged
@@ -4529,6 +4530,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &936649244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936649239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bc88a302d30b14caab9ab50eee9a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetButton: {fileID: 492560390}
+  input:
+  - {fileID: 302449758}
 --- !u!1 &993773721
 GameObject:
   m_ObjectHideFlags: 0
@@ -7723,6 +7739,7 @@ GameObject:
   - component: {fileID: 1639430074}
   - component: {fileID: 1639430073}
   - component: {fileID: 1639430072}
+  - component: {fileID: 1639430075}
   m_Layer: 5
   m_Name: Log Purchase
   m_TagString: Untagged
@@ -7815,6 +7832,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1639430075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639430070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bc88a302d30b14caab9ab50eee9a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetButton: {fileID: 78497980}
+  input:
+  - {fileID: 993773723}
 --- !u!1 &1641656871
 GameObject:
   m_ObjectHideFlags: 0
@@ -8360,6 +8392,7 @@ GameObject:
   - component: {fileID: 1772725307}
   - component: {fileID: 1772725309}
   - component: {fileID: 1772725308}
+  - component: {fileID: 1772725310}
   m_Layer: 5
   m_Name: Log Event
   m_TagString: Untagged
@@ -8452,6 +8485,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772725305}
   m_CullTransparentMesh: 1
+--- !u!114 &1772725310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772725305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bc88a302d30b14caab9ab50eee9a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetButton: {fileID: 2070714699}
+  input:
+  - {fileID: 862177944}
+  - {fileID: 1641656873}
 --- !u!1 &1827901005
 GameObject:
   m_ObjectHideFlags: 0
