@@ -34,7 +34,11 @@ public class PollingHandlerCustom : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------
     public void InfoSetup()
     {
-        customerId = GetUserId();
+        if(string.IsNullOrEmpty(customerId))
+        {
+            customerId = GetUserId();
+        }
+        
         apiKey = "H3uZsrv6B2qyRXGePLxQ9U8g7vilWFTjIhZO";
     }
     //----------------------------------------------------------------------------------------------------------------
