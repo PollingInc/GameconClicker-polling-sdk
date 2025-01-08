@@ -44,7 +44,7 @@ public class PollingHandlerCustom : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------
     private string GetUserId()
     {
-        return "unityTest"  + DateTime.UtcNow.ToLongDateString();
+        return "unityTest"  + DateTime.UtcNow.ToUnixTimeMilliseconds()
     }
 
 
