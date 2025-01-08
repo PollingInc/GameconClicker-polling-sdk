@@ -38,13 +38,13 @@ public class PollingHandlerCustom : MonoBehaviour
         {
             customerId = GetUserId();
         }
-        
+
         apiKey = "H3uZsrv6B2qyRXGePLxQ9U8g7vilWFTjIhZO";
     }
     //----------------------------------------------------------------------------------------------------------------
     private string GetUserId()
     {
-        return "unityTest"  + DateTime.UtcNow.ToUnixTimeMilliseconds()
+        return "unityTest"  + DateTime.UtcNow.ToUnixTimeMilliseconds();
     }
 
 
@@ -102,7 +102,7 @@ public class PollingHandlerCustom : MonoBehaviour
     }
 
     //----------------------------------------------------------------------------------------------------------------
-    
+
     public void ShowSurvey(TMP_InputField uuid)
     {
         polling.ShowSurvey(uuid.text);
@@ -143,7 +143,7 @@ public class PollingHandlerCustom : MonoBehaviour
         if(Enum.TryParse(viewTypeStr, out ViewType viewType))
         {
             polling.SetViewType(viewType);
-        }   
+        }
     }
 
 }
