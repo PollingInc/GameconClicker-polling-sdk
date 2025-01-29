@@ -3,6 +3,7 @@ using Polling;
 using System;
 using UnityEngine;
 using TMPro;
+using System.Globalization;
 
 public class PollingHandlerCustom : MonoBehaviour
 {
@@ -44,7 +45,7 @@ public class PollingHandlerCustom : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------
     private string GetUserId()
     {
-        return "unityTest"  + DateTime.UtcNow.ToUnixTimeMilliseconds()
+        return "unityTest" + DateTime.UtcNow.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
     }
 
 
