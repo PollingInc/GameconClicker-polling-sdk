@@ -149,7 +149,8 @@ void POLUnityPluginConfigureCallbacks(char *target, char *success,
 
 void POLUnityPluginInitialize(char *customerId, char *apiKey)
 {
-	[POLPolling.polling initializeWithCustomerID:POLCopyInString(customerId) APIKey:POLCopyInString(apiKey)];
+    POLPolling.polling.customerID = POLCopyInString(customerId);
+    POLPolling.polling.apiKey = POLCopyInString(apiKey);
     POLPolling.polling.delegate = POLUnityPluginController.pluginController;
 }
 

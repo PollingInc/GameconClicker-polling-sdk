@@ -44,7 +44,7 @@ public class PollingHandlerCustom : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------
     private string GetUserId()
     {
-        return "unityTest"  + DateTime.UtcNow.ToUnixTimeMilliseconds();
+        return "unityTest"  + DateTimeOffset.UtcNow.ToUnixTimeSeconds();
     }
 
 
@@ -105,11 +105,13 @@ public class PollingHandlerCustom : MonoBehaviour
 
     public void ShowSurvey(TMP_InputField uuid)
     {
+        Debug.Log($"(Unity) ShowSurvey({uuid.text})");
         polling.ShowSurvey(uuid.text);
     }
 
     public void ShowEmbed()
     {
+        Debug.Log("(Unity) ShowEmbed()");
         polling.ShowEmbedView();
     }
 
@@ -117,17 +119,20 @@ public class PollingHandlerCustom : MonoBehaviour
 
     public void LogEvent()
     {
+        Debug.Log($"(Unity) LogEvent({logEventInputKey.text}, {logEventInputValue.text})");
         polling.LogEvent(logEventInputKey.text, logEventInputValue.text);
     }
 
     public void LogSession()
     {
+        Debug.Log("(Unity) LogSession()");
         polling.LogSession();
     }
 
 
     public void LogPurchase(TMP_InputField value)
     {
+        Debug.Log($"(Unity) LogPurchase({value.text})");
         string normalizedValue = value.text.Replace(',', '.');
 
         if (Double.TryParse(normalizedValue, out double result))
@@ -140,6 +145,7 @@ public class PollingHandlerCustom : MonoBehaviour
     //----------------------------------------------------------------------------------------------------------------
     public void SetViewType(string viewTypeStr)
     {
+        Debug.Log($"(Unity) SetViewType({viewTypeStr})");
         if(Enum.TryParse(viewTypeStr, out ViewType viewType))
         {
             polling.SetViewType(viewType);

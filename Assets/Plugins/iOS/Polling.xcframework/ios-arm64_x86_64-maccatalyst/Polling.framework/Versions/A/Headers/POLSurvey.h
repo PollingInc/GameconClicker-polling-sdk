@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class POLReward;
 
+NS_SWIFT_NAME(Polling.Survey)
 @interface POLSurvey : NSObject
 
 @property (readonly) NSString *UUID;
@@ -19,7 +20,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSUInteger questionCount;
 
 @property (readonly) NSURL *URL;
-@property (readonly) NSURL *embedViewURL;
 @property (readonly) NSURL *completionURL;
 
 @property (readonly) NSString *userSurveyStatus;

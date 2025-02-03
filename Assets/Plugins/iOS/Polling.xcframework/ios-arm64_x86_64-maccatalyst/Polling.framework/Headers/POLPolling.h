@@ -12,52 +12,59 @@ NS_ASSUME_NONNULL_BEGIN
 @class POLSurvey, POLReward;
 @protocol POLPollingDelegate;
 
+/** Survey view style */
 typedef NS_ENUM(NSInteger, POLViewType) {
 	POLViewTypeNone = 0,
+	/** Display survey in view that is centered over existing app
+	 * content. */
 	POLViewTypeDialog = 1,
+	/** Display survey in a sheet that slides up from the bottom over
+	 * existing app content. */
 	POLViewTypeBottom = 2,
-};
+} NS_SWIFT_NAME(Polling.ViewType);
 
+
+NS_SWIFT_NAME(Polling)
 @interface POLPolling : NSObject
 
-/* ========================================================================= */
-
-/* NOTE: the SDK initialization is a mess, I have not settled on how I
- * want this to work. The Objective-C way for typical SDK
- * initialization differs a great deal from the other Polling
- * SDKs. */
 - init NS_UNAVAILABLE;
-- initWithCustomerID:(NSString *)customerID APIKey:(NSString *)apiKey;
++ new NS_UNAVAILABLE;
 
+/**
+ * Returns the POLPolling singleton object.
+ *
+ * @discussion
+ * The singleton object is used to configure the SDK and to access
+ * features like sending log events and displaying surveys.
+ *
+ * @return POLPolling singleton instance
+ */
 + (instancetype)polling;
-
-- (void)initializeWithCustomerID:(NSString *)customerID APIKey:(NSString *)apiKey;
-//- (void)initializeWithPayload:(id)POLSDKPayload;
 
 @property (nonatomic, weak, nullable) id <POLPollingDelegate> delegate;
 
 @property NSString *customerID;
 @property NSString *apiKey;
-
+@property POLViewType viewType;
 @property BOOL disableCheckingForAvailableSurveys;
-
-/* ========================================================================= */
-
 
 /* public API methods */
 - (void)logEvent:(NSString *)eventName value:(NSString *)eventValue;
 - (void)logPurchase:(int)integerCents;
 - (void)logSession;
-- (void)setViewType:(POLViewType)viewType;
 - (void)showEmbedView;
 - (void)showSurvey:(NSString *)surveyUuid;
-/* - (void)setApiKey(string apiKey) */
-/* - (void)setCustomerId(string customerId) */
 
+/* The accessor methods: setCustomerID, setApiKey, setViewType,
+ *   setDisableCheckingForAvailableSurveys are implicitly available in
+ *   ObjC, but Swift code must use the property form?
+ *
+ * TODO: explicitly declare accessors?
+ */
 
 @end
 
-
+NS_SWIFT_NAME(PollingDelegate)
 @protocol POLPollingDelegate <NSObject>
 
 @optional

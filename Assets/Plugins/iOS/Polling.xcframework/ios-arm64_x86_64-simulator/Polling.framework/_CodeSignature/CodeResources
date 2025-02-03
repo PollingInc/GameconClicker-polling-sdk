@@ -6,15 +6,15 @@
 	<dict>
 		<key>Headers/POLPolling.h</key>
 		<data>
-		lU6Q1f1RluhNcs5vM+1vA5Y71BU=
+		EKvs6OMnFhael5wayRP9dmnMHYY=
 		</data>
 		<key>Headers/POLReward.h</key>
 		<data>
-		cuRMfvY6sO2+ufDUF9t732mylxA=
+		c4NYxcPofsBIjh4Dfa92Vl+sP2E=
 		</data>
 		<key>Headers/POLSurvey.h</key>
 		<data>
-		cFeAW3EaYHNxPnYx+v5RF0JvYvo=
+		8lPetjgcQPwvP9OMoh/mH42z3m0=
 		</data>
 		<key>Headers/Polling.h</key>
 		<data>
@@ -23,6 +23,10 @@
 		<key>Info.plist</key>
 		<data>
 		sQP4rVZWoXx8UQeQXs5ZdVVoLiU=
+		</data>
+		<key>Modules/module.modulemap</key>
+		<data>
+		oBLoXBAOIqe03kGr7T33q4/z58E=
 		</data>
 		<key>POLSurveyBottomViewController.nib</key>
 		<data>
@@ -39,21 +43,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+2T0/BaqV1mcoCToUkpb1bXscIJ6k12GUC0I8QViOYM=
+			jYNXW4p0GnORHBauoBY6KEEb6ufv1YL//R76gQJIcbk=
 			</data>
 		</dict>
 		<key>Headers/POLReward.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OKx+f2YvXpJZBi3qsAAHqc2r9BgNwu7/v1QyRNmqML8=
+			y/4I3uIdsYdfItnrIRYqbS0GIDFFinmKkzkxjXMYBeQ=
 			</data>
 		</dict>
 		<key>Headers/POLSurvey.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			W9/ZCFfRW0kkXcSmz+0xqgyu+1Ivqnun6T+HILjihQE=
+			B+XTqQjBUJ13/igh7LDCeocxHJEs5bwAQlkq/i3W4bk=
 			</data>
 		</dict>
 		<key>Headers/Polling.h</key>
@@ -61,6 +65,13 @@
 			<key>hash2</key>
 			<data>
 			2tItf1LHowHvskUZvVFCFDSSJP7OVmOXEILeZ3qK1Qs=
+			</data>
+		</dict>
+		<key>Modules/module.modulemap</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GDvh4I9vpFIQ6t1roPs0yQ4H6fAg7RKzsjFk05Ff7MU=
 			</data>
 		</dict>
 		<key>POLSurveyBottomViewController.nib</key>
