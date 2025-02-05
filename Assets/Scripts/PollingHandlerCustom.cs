@@ -3,6 +3,7 @@ using Polling;
 using System;
 using UnityEngine;
 using TMPro;
+using System.Globalization;
 
 public class PollingHandlerCustom : MonoBehaviour
 {
