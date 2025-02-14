@@ -4,7 +4,7 @@
 ---
 
 > [!WARNING] 
-> You can't test it directly in Unity Editor as it is native Android. In order to test it, you have to build your project and run it into a mobile device.
+> You can't test it directly in Unity Editor as it is native Android or native iOS. In order to test it, you have to build your project and run it into a mobile device.
 
 
 # Polling SDK DEMO
